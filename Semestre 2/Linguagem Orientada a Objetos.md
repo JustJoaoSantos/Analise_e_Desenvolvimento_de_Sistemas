@@ -202,7 +202,7 @@
 	```
 	
 # U2A4 - Reutilizacao de classes 
-- Heranca
+- Heranca, interface e polimorfismo
 	```java em Treinavel.java
 	public interface Treinavel {
 		void executarComando(String comando);
@@ -248,6 +248,400 @@
 	java HerancaInterface
 	```
 
-- Interface 
+# U3A2 - Definicao e uso de interfaces
+- interface e herança
+```
+public class AlunoGraduacao extends Aluno implements Avaliacao {
+	public AlunoGraduacao(String nome, int matricula, double nota) {
+		super(nome, matricula, nota); //passando input do construtor para classe pai 
+	}
+	
+	@Override 
+	public double calcularMedia() { //sobrecarga da interface
+		return getNota() * 1.2;
+	}
+}
+```
 
-- Polimorfismo 
+# U3A3 - Classes Abstratas
+- ao contrario das interfaces classes concretaas podem herdar apenas uma classa abstrata
+- classe abstrata 
+```
+abstract class Pessoa { //nao para ser instanciada apenas herdada
+	protected String nome;
+	
+	public Pessoa(String nome) {
+		this.nome = nome;
+	}
+	
+	public abstract void apresentar();
+}
+
+class Aluno extends Pessoa {
+	private int matricula;
+	
+	public Aluno (String nome, int matricula) {
+		super(nome)
+		this.matricula = matricula;
+	}
+	
+	@Override 
+	public void apresentar() {
+		System.out.println("Eu sou o aluno " + nome + " e minha matricula " + matricula);
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		Aluno aluno1 = new Aluno("Joao", 16);
+		aluno1.apresentar();
+	}
+}
+```
+
+# U4A4 - Tratamento de excessoes
+- o try-catch imperirar que o sistema quebre e exibirar uma mensagem de erro amigavel
+- o finally garantira que o sistema sempre finalize corretamente
+```
+try {
+
+    // Código que pode gerar uma exceção
+
+} catch (TipoDeExcecao e) {
+
+    // Código para tratar a exceção
+
+} finally {
+
+    // Código que será executado sempre
+
+}
+```
+
+- tipos de excessoes 
+Em Java, as exceções podem ser classificadas em duas categorias principais:
+
+1.    Checked Exceptions:
+
+    São verificadas pelo compilador e devem ser tratadas obrigatoriamente. Exemplos:
+    IOException”: Erros relacionados à entrada e saída de dados.
+    “SQLException”: Erros relacionados ao banco de dados.
+
+2.    Unchecked Exceptions:
+
+    Não são verificadas pelo compilador e podem ou não ser tratadas pelo programador. Exemplos:
+    “ArithmeticException”: Como no caso de divisão por zero.
+    “NullPointerException”: Tentativa de acessar métodos ou atributos de um objeto nulo.
+	
+# U4A1 - Conceito e Aplicacao
+- Ciclo de vida 
+	- Analise
+	- design
+	- Implementacao 
+	- Teste e manutenca
+	
+- Design Patterns
+	- Singleton: Garantir que uma classe tenha apenas uma instancia e fornecer um ponto global de acesso.
+	- Factory Method: Criar objetos sem expor a logica de criacao ao cliente. 
+	- Observer: permitir que objetos sejam notificados sobre mudancas em outro metodos.
+	
+# U4A2 - Arrays 
+- os arrays, ou vetores, sao estruturas de dados fundamentais para organizacao e manipulacao de informacoes.
+
+- Vetor unidimensional
+	```
+	int[] notas = new int[5]; //declaracao de array de 5 elementos 
+	notas[0] = 902;
+	notas[1] = 200;
+	
+	for (int i = 0; i < notas.length; i++) {
+		System.out.println(notas[i]);
+	}
+	
+	Arrays.sort(notas);
+	```
+	
+- array multidimensional ou matriz
+	```
+	int[][] matriz = {
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9}
+	}
+	
+	for (int i = 0; i < matriz.lenght; i++) {
+		for (int j = 0; j < matriz[i].length; j++) {
+			System.out.println(matriz[i][j]);
+		}
+	}
+	```
+	
+- array list 
+```
+import java.util.ArrayList;
+
+ 
+
+public class ExemploArrayList {
+
+    public static void main(String[] args) {
+
+        ArrayList<String> nomes = new ArrayList<>();
+
+        nomes.add("João");
+
+        nomes.add("Maria");
+
+        nomes.add("Carlos");
+
+ 
+
+        for (String nome : nomes) {
+
+            System.out.println(nome);
+
+        }
+
+    }
+
+}
+```
+
+# U4A3 - Colecoes e Arquivos
+- O framework 'java.util.collection' define a base para diversas implementacoes de colecoes, como listas, conjuntos, filas e mapas.
+
+- Lista dinamica ou ArrayList 
+	- Uma lista dinâmica é um tipo de coleção que armazena elementos de maneira sequencial e ajusta seu tamanho automaticamente
+	```
+	import java.util.ArrayList;
+	
+	ArrayList<String> nomes = new ArrayList<>();
+	nomes.add("Ana");
+	nomes.add("anderson");
+	nomes.add("clara");
+	
+	int i = 1;
+	for (String nome : nomes) {
+		System.out.println(i + "-" + nome);
+		i++;
+	}
+	```
+	
+- Conjuntos ou Sets
+	- Conjuntos garantem que cada elemento seja único, sendo ideais em cenários que requerem eliminação de duplicatas.
+	```
+	import java.util.HashSet;
+
+	public class ExemploHashSet {
+		public static void main(String[] args) {
+			HashSet<String> linguagens = new HashSet<>();
+			linguagens.add("Java");
+			linguagens.add("Python");
+			linguagens.add("Java"); // Não será adicionado novamente
+
+			for (String linguagem : linguagens) {
+				System.out.println(linguagem);
+			}
+		}
+	}
+	```
+
+- Filas ou Queue
+	- Filas operam no sistema FIFO (First In, First Out), aplicáveis em gerenciamento de tarefas ou mensagens
+	```
+	import java.util.LinkedList;
+	import java.util.Queue;
+
+	public class ExemploQueue {
+		public static void main(String[] args) {
+			Queue<String> fila = new LinkedList<>();
+			fila.add("Pedido 1");
+			fila.add("Pedido 2");
+			fila.add("Pedido 3");
+
+			while (!fila.isEmpty()) {
+				System.out.println("Processando: " + fila.poll());
+			}
+		}
+	}
+	```
+	
+- Mapas ou Maps
+	- Os mapas armazenam dados no formato chave-valor, permitindo acesso eficiente baseado na chave.
+	```
+	import java.util.HashMap;
+
+	public class ExemploHashMap {
+		public static void main(String[] args) {
+			HashMap<Integer, String> alunos = new HashMap<>();
+			alunos.put(1, "Carlos");
+			alunos.put(2, "Marina");
+
+			for (int chave : alunos.keySet()) {
+				System.out.println("ID: " + chave + ", Nome: " + alunos.get(chave));
+			}
+		}
+	}
+	```
+	
+	
+- Classe para usar listas
+ ```
+ class ListaNomes {
+	private ArrayList<String> nomes = new ArrayList<>();
+	
+	public void adicionarNome(String lnome) {
+		nomes.add(lnome);
+	}
+	
+	public void removerNome(String lnome) {
+		nomes.remove(lnome);
+	}
+	
+	public void listarNomes() {
+		for (String nome : nomes) {
+			System.out.println(nome);
+		}
+	}
+ }
+ 
+ public class main {
+	public static void main(String[] args) {
+		ListaNomes lista = new ListaNomes();
+		
+		lista.adicionarNome("Anderson");
+		lista.adicionarNome("Roberto");
+		lista.adicionarNome("Clara");
+		
+		lista.listarNomes();
+		
+		lista.removerNome("Clara");
+		
+		lista.listarNomes();
+	}
+ }
+ ```
+ 
+- Leitura de arquivos 
+	- realizado por classes como FileReader ou BufferedReader que permite ler arquivos linha por linha
+	```
+	import java.io.BufferedReader;
+	import java.io.FileReader;
+	import java.io.IOException;
+
+	public class LeituraArquivo {
+		public static void main(String[] args) {
+			try (BufferedReader br = new BufferedReader(new FileReader("dados.txt"))) {
+				String linha;
+				while ((linha = br.readLine()) != null) {
+					System.out.println(linha);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	```
+	
+- Gravacao em arquivos 
+	- A gravação é feita com “BufferedWriter” e “FileWriter”.
+	```
+	import java.io.BufferedWriter;
+	import java.io.FileWriter;
+	import java.io.IOException;
+
+	public class GravacaoArquivo {
+		public static void main(String[] args) {
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter("saida.txt"))) {
+				bw.write("Primeira linha.");
+				bw.newLine();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	```
+	
+
+- Organização e serialização de dados em aplicações
+	- Serialização é o processo de converter objetos em um formato que pode ser armazenado ou transmitido, permitindo sua recuperação posterior
+	- Em Java, a serialização é feita com a interface “Serializable”. Objetos serializados podem ser salvos em arquivos ou enviados pela rede.
+	```
+	import java.io.*;
+
+	class Pessoa implements Serializable {
+		private String nome;
+		private int idade;
+
+		public Pessoa(String nome, int idade) {
+			this.nome = nome;
+			this.idade = idade;
+		}
+
+		@Override
+		public String toString() {
+			return nome + ", " + idade + " anos";
+		}
+	}
+
+	public class SerializacaoExemplo {
+		public static void main(String[] args) {
+			try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("pessoa.dat"))) {
+				Pessoa p = new Pessoa("Ana", 25);
+				oos.writeObject(p);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	```
+	
+
+- Recuperação de dados serializados
+	- Objetos serializados podem ser lidos com “ObjectInputStream”. A seguir, pode ser observado uma implementação em Java utilizando este tipo de objeto.
+	```
+	try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("pessoa.dat"))) {
+		Pessoa p = (Pessoa) ois.readObject();
+		System.out.println("Dados: " + p);
+
+	} catch (IOException | ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	```
+
+# U4A4 - Banco de dados relacional
+- MySQL
+	```
+	-- create a table
+	CREATE TABLE cliente (
+		id int primary key,
+		nome varchar(100),
+		email varchar(100),
+		telefone varchar(15),
+		cidade varchar(50),
+		uf varchar(2)
+	);
+	
+	--insert values in table cliente 
+	INSERT INTO cliente VALUES (1, 'Anderson', 'anderson@hotmail.com', '43 99999-9999', 'Londrinas' , 'PR');
+	INSERT INTO cliente VALUES (2, 'Anderson', 'anderson@hotmail.com', '43 99999-9999', 'Londrinas' , 'PR');
+	INSERT INTO cliente VALUES (3, 'Anderson', 'anderson@hotmail.com', '43 99999-9999', 'Londrinas' , 'PR');
+	
+	-- busca das informacoes
+	SELECT * FROM cliente;
+	
+	-- update de informacoes 
+	UPDATE cliente 
+		SET nome = 'Dorival', 
+			uf = 'SP'
+		WHERE id = 2;
+		
+	-- busca selecionada
+	SELECT id, nome, cidade, uf FROM cliente;
+	
+	-- delecao selecionada
+	DELETE FROM cliente WHERE id = 3;
+	```
