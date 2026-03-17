@@ -1,4 +1,5 @@
 # U1A1 - Fundamentos de Orientacao a objetos
+- Competencia ENADE: analisar, projetar, documentar, implemetar, testar, implantar e manter sistemas computacionais para diferentes plataformas/comceber, especificar, projetar, construir, testar, verificar e validar sistemas de computacao
 - Evolucao da programacao
 	- Evoluiu de abordagem lineares e sequenciais para paradigmas mais complexos.
 	- Na decada de 1960 as tentativas de estruturar melhor as aplicacoes levou ao desenvolvimento do POO
@@ -369,46 +370,37 @@ Em Java, as exceções podem ser classificadas em duas categorias principais:
 		{7, 8, 9}
 	}
 	
-	for (int i = 0; i < matriz.lenght; i++) {
-		for (int j = 0; j < matriz[i].length; j++) {
-			System.out.println(matriz[i][j]);
+	for (int linha = 0; linha < matriz.lenght; linha++) {
+		for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+			System.out.println(matriz[linha][coluna]);
 		}
 	}
 	```
 	
 - array list 
-```
-import java.util.ArrayList;
+	```
+	import java.util.ArrayList;
 
- 
+	public class ExemploArrayList {
+		public static void main(String[] args) {
+			ArrayList<String> nomes = new ArrayList<>();
+			nomes.add("João");
+			nomes.add("Maria");
+			nomes.add("Carlos");
 
-public class ExemploArrayList {
-
-    public static void main(String[] args) {
-
-        ArrayList<String> nomes = new ArrayList<>();
-
-        nomes.add("João");
-
-        nomes.add("Maria");
-
-        nomes.add("Carlos");
-
- 
-
-        for (String nome : nomes) {
-
-            System.out.println(nome);
-
-        }
-
-    }
-
-}
-```
+			for (String nome : nomes) {
+				System.out.println(nome);
+			}
+		}
+	}
+	```
 
 # U4A3 - Colecoes e Arquivos
 - O framework 'java.util.collection' define a base para diversas implementacoes de colecoes, como listas, conjuntos, filas e mapas.
+- tipos e characteristicas
+	- list: permite duplicatas, mantem ordem, acesso por indice
+	- Set: nao permite duplicata, nao mantem ordem, acesso por iteracao
+	- Map: chaves unicas, valores repetem, nao mantem ordem, acesso por chave.
 
 - Lista dinamica ou ArrayList 
 	- Uma lista dinâmica é um tipo de coleção que armazena elementos de maneira sequencial e ajusta seu tamanho automaticamente
@@ -615,7 +607,11 @@ public class ExemploArrayList {
 # U4A4 - Banco de dados relacional
 - MySQL
 	```
-	-- create a table
+	-- criando banco de dados 
+	CREATE DATABASE gerenciamento_clientes;
+	USE gerenciamento_clientes;
+	
+	-- criar tabela
 	CREATE TABLE cliente (
 		id int primary key,
 		nome varchar(100),
@@ -625,7 +621,7 @@ public class ExemploArrayList {
 		uf varchar(2)
 	);
 	
-	--insert values in table cliente 
+	-- inserir dados em tabela cliente 
 	INSERT INTO cliente VALUES (1, 'Anderson', 'anderson@hotmail.com', '43 99999-9999', 'Londrinas' , 'PR');
 	INSERT INTO cliente VALUES (2, 'Anderson', 'anderson@hotmail.com', '43 99999-9999', 'Londrinas' , 'PR');
 	INSERT INTO cliente VALUES (3, 'Anderson', 'anderson@hotmail.com', '43 99999-9999', 'Londrinas' , 'PR');
@@ -644,4 +640,145 @@ public class ExemploArrayList {
 	
 	-- delecao selecionada
 	DELETE FROM cliente WHERE id = 3;
+	```
+- conexao java -> sql
+	```
+	import mysql.connector
+	
+	conexao = mysql.connector.connect(
+	host="localhost",
+	user="root",
+	password="sua_senha",
+	database="gerenciamento_loja"
+	)
+
+	cursor = conexao.cursor()
+	 
+	# Consultar produtos de uma categoria específica
+	categoria = 1
+	cursor.execute(f"SELECT nome_produto, preco, estoque FROM produtos WHERE id_categoria = {categoria}")
+	 
+	for produto in cursor.fetchall():
+			print(produto)
+	conexao.close()
+	```
+- usando java para conectar com o banco de dados 
+	```
+	import java.sql.Connection;
+	import java.sql.DriverManager;
+	import java.sql.SQLException;
+	 
+	public class DatabaseConnection {
+		private static final String URL = "jdbc:mysql://localhost:3306/meubanco";
+		private static final String USER = "usuario";
+		private static final String PASSWORD = "senha";
+	 
+		public static Connection getConnection() throws SQLException {
+			return DriverManager.getConnection(URL, USER, PASSWORD);
+		}
+	}
+	```
+	
+- usando java para realizar consultas
+	```
+	import java.sql.Connection;
+	import java.sql.ResultSet;
+	import java.sql.SQLException;
+	import java.sql.Statement;
+	 
+	public class QueryExample {
+		public static void main(String[] args) {
+			try (Connection connection = DatabaseConnection.getConnection();
+				 Statement statement = connection.createStatement();
+				 ResultSet resultSet = statement.executeQuery("SELECT * FROM Clientes")) {
+	 
+				while (resultSet.next()) {
+					int id = resultSet.getInt("ID");
+					String nome = resultSet.getString("Nome");
+					String email = resultSet.getString("Email");
+					String dataNascimento = resultSet.getString("DataNascimento");
+	 
+					System.out.println("ID: " + id + ", Nome: " + nome + ", Email: " + email + ", Data de Nascimento: " + dataNascimento);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	```
+	
+- usando java para inserir dados 
+	```
+	import java.sql.Connection;
+	import java.sql.PreparedStatement;
+	import java.sql.SQLException;
+	 
+	public class InsertExample {
+		public static void main(String[] args) {
+			String sql = "INSERT INTO Clientes (ID, Nome, Email, DataNascimento) VALUES (?, ?, ?, ?)";
+	 
+			try (Connection connection = DatabaseConnection.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+				preparedStatement.setInt(1, 2);
+				preparedStatement.setString(2, "Maria Oliveira");
+				preparedStatement.setString(3, "maria.oliveira@example.com");
+				preparedStatement.setDate(4, java.sql.Date.valueOf("1990-08-25"));
+
+				int rowsAffected = preparedStatement.executeUpdate();
+				System.out.println("Linhas afetadas: " + rowsAffected);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	```
+	
+- usando java para atualizar os dados 
+	```
+	import java.sql.Connection;
+	import java.sql.PreparedStatement;
+	import java.sql.SQLException;
+	 
+	public class UpdateExample {
+		public static void main(String[] args) {
+			String sql = "UPDATE Clientes SET Email = ? WHERE ID = ?";
+	 
+			try (Connection connection = DatabaseConnection.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	 
+				preparedStatement.setString(1, "maria.novoemail@example.com");
+				preparedStatement.setInt(2, 2);
+				int rowsAffected = preparedStatement.executeUpdate();
+				System.out.println("Linhas afetadas: " + rowsAffected);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	```
+	
+- usando java para excluir dados 
+	```
+	import java.sql.Connection;
+	import java.sql.PreparedStatement;
+	import java.sql.SQLException;
+	 
+	public class DeleteExample {
+		public static void main(String[] args) {
+			String sql = "DELETE FROM Clientes WHERE ID = ?";
+	 
+			try (Connection connection = DatabaseConnection.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	 
+				preparedStatement.setInt(1, 2);
+				int rowsAffected = preparedStatement.executeUpdate();
+				System.out.println("Linhas afetadas: " + rowsAffected);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	```
