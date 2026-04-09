@@ -76,7 +76,7 @@
 	- e.g GRANT INSERT, DELETE ON CLIENTES TO user001;
 	- ou para revogar o privilegio de exclusao: REVOKE DELETE ON CLIENTES FROM user001;
 	
-# U2A1 - Modelagem de dados com o modelo Entidade-Relacionamento (ER)
+# U2A1 - Modelagem de dados com o Modelo Entidade-Relacionamento (MER)
 - MER (Modelo Entidade-Relacionamento)
 	- utilizado para descrever os objetos do mundo real atraves de entidades, com suas propriedades que sao os atributos e os seus relacionamentos.
 	- As entidades representam um objeto do mundo real e que possuem uma existencia independente, como: pessoas, empresa, carro, entre outras coisas que podem ser representadas por uma entidade.
@@ -90,7 +90,7 @@
 	- Modelo Fisico 
 		- Se encontram detalhados os componentes de estrutura fisica do banco de dados, como tabelas, campos, tipos de valores, indices, etc.
 		
-# U2A2 - Elementos do modelo Entidade-Relacionamento (ER) I
+# U2A2 - Elementos do Modelo Entidade-Relacionamento (MER) I
 - Entidades 
 	- Principal conceito desta modelagem, sao os objetos do "mundo real", da realidade a ser modelada, sobre os quais deseja-se conhecer as informacoes e os relacionamentos entre elas.
 	- exemplo: hospital.
@@ -118,7 +118,7 @@
 		- 1:M um para muitos
 		- N:1 Muitos para um
 		
-# U2A3 - Elementos do modelo Entidade-Relacionamento (ER) II
+# U2A3 - Elementos do Modelo Entidade-Relacionamento (MER) II
 - Generalizacao e Especializacao
 	- Sao conceitos usados para representar objetos do mundo real (entidades) que possuem os mesmos atributos, podem ser categorizados e podem ser representados em uma hierarquia que mostra as dependencias entre entidades de uma mesma categoria.
 	- Atraves desses conceitos, e possivel atribuir propriedades particulares aa entidade generica (entidade pai) a um subconjunto das ocorrencias (entidade especializada).
@@ -147,7 +147,7 @@
 	- quando duas entidades tem um relacionamento direto de muitos-para-muitos, ou seja, cada instancia de uma entidade pode se relacionar com varias instancias da outra entidade e vice-versa, é necessario criar uma terceira entidade para gerenciar esse relacionamento complexo.
 	- segue anexo: Anexos/U2A3_entidade_associativa.png
 	
-# U2A4 - Elementos do modelo Entidade-Relacionamento (ER) III
+# U2A4 - Elementos do Modelo Entidade-Relacionamento (MER) III
 - Entidades Fortes
 	- É quando existe por ela só, independentemente da existencia de outras entidades.
 	- Por exemplo, em um sistema academico, a entidade curso é independente de quaisquer outras para existir, portanto, e considerada "forte".
@@ -165,3 +165,42 @@
 - Chave Estrangeira
 	- Tem a funcao de estabelecer relacoes entre os registros de uma tabela com os registros de outra tabela por meio de uma chave primaria desta ultima.
 	- Sao amplamente utilizadas para fornecer valores de outra tabela, a qual contem a chave primaria.
+	
+# U3A1 - Diagrama Entidade-Relacionamento (DER)
+- O DER (Diagrama Entidade-Relacionamento) é utilizado para representar em forma grafica o que foi descrito no MER (Modelo Entidade Relacionamento)
+- Com base no DER, é possivel projetar o esquema do banco de dados e determinar como os dados seram armazenados e consultados no sistema.
+- Em situacoes praticas, o diagrama é tido muitas vezes como sinonimo de modelo, uma vez que sem uma forma de visualizar as informacoes, o modelo pode ficar abstrato demais para auxiliar no desenvolvimento do sistema.
+- Dessa forma, quando se esta modelando um dominio, o mais comum é já criar sua representacao grafica, seguindo algumas regras.
+
+- Regras para criacao do esquema de um DER 
+	- segue anexo: Anexos/U3A1_der.png
+	
+- Notacoes de cardinalidade 
+	- segue anexo: Anexos/U3A1_notacoes_cardinalidade.png
+	
+# U3A2 - Aspectos de projeto em banco de dados 
+- O Proposito fundamental de qualquer software de banco de dados é efetivamente lidar com grandes volumes de dados, o que torna essencial a observacao e documentacao cuidadosas de seu desenvolvimento e implementação.
+- Esse processo de observacao e documentacao de um programa de banco de dados é formalmente reconhecido como o ciclo de vida do banco de dados, que abrange cinco etapas distintas.
+	- Planejamento: engloba a coleta de informacoes necessarias, e preparacao de um bloco teorico sobre os requisitos minimos para o qual o programa de banco de dados sera desenvolvido;
+	- Analise: engloba a avaliacao critica do planejamento de desenvolvimento de banco de dados realizada na etapa anterior;
+	- Desenvolvimento: todos os parametros do projeto logico de operacoes de banco de dados sao finalizados e o desenvolvimento de software e feito sob um periodo de tempo pre-determinado;
+	- Implementação: o programa criado é colocado em prática em relação a um conjunto de dados (informações) específico, e seus parâmetros de operação são então ativados para executar as tarefas predefinidas.
+	- Manutenção: essa etapa costuma ser de longa duração, abrangendo todo o período destinado ao teste, gerenciamento, resolução de problemas e manutenção das funcionalidades do programa de banco de dados que foi desenvolvido.
+	
+- Dicionario de Dados
+	- A criacao e manutencao de um dicionario de dados desempenha um papel crucial no ciclo de vida de um banco de dados e na interpretacao dos dados que descrevem a natureza do negocio.
+	- Um dos beneficios notaveis de manter um dicionario de dados bem elaborado e a promocao da consistencia entre os itens de dados em diferentes tabelas.
+	- As informacoes que fornecem descricoes da estrutura do banco de dados sao denominads metadados.
+
+- Um dicionario de dados deve incluir informacoes cruciais, como:
+	1. Descricoes dos nomes de tabelas, relacionamentos e atributos.
+	2. Especificacoes de tipos de dados (dominio) e seus respectivos tamanhos.
+	3. Detalhes minuciosos sobre as chaves usadas.
+	4. Registros dos nomes dos usuarios e suas permicoes relacionadas a tabelas.
+	
+- Estrategias de Modelagem via DER 
+	- Estrategia top-down: Inicia-se identificando conjuntos de dados e, posteriormente, definindo os elementos em cada um desses conjuntos. isso envolve a identificacao de diversos tipos de entidades e a especificacao de seus atributos. 
+	  Geralmente essa abordagem e usada em bancos de dados de grande porte.
+	 
+	- Estrategia bottom-up: Comeca-se pela identificacao dos elementos de dados, ou seja, os itens individuais, e, em seguida, agrupa-se esses itens para formar os conjuntos de dados. Nesse caso, os atributos sao identificados primeiro e, ao agrupa-los, as tabelas sao criadas.
+	  Essa tecnica e comum em banco de dados menores.
