@@ -204,3 +204,139 @@
 	 
 	- Estrategia bottom-up: Comeca-se pela identificacao dos elementos de dados, ou seja, os itens individuais, e, em seguida, agrupa-se esses itens para formar os conjuntos de dados. Nesse caso, os atributos sao identificados primeiro e, ao agrupa-los, as tabelas sao criadas.
 	  Essa tecnica e comum em banco de dados menores.
+	  
+# U3A3 - Notacao UML para modelagem de Dados
+- A UML (Unified Modeling Language) é umal inguagem padrao amplamente utilzada para modelar sistemas orientados a objetos.
+- A UML nao é uma metodologia de Desenvolvimento por si só, mas sim uma linguagem que auxilia na visualizacao e comunicacao de conceitos em sistemas orientados a objetos.
+- Ela oferece uma maneira padronizada de representar o trabalho dos desenvolvedores em diagramas, sendo especialmente util na criacao de modelos de sistemas de software.
+
+- A linguagem UML é composta por varios tipos de diagramas, dos quais podemos destacar:
+	- Diagrama de Classes: o mais amplamente utilizados, permite representar conjuntos de classes e suas relacoes 
+	- Diagrama de objetos: ilustra como as informacoes de um objeto sao armazenadas em uma classe na pratica.
+	- Diagrama de caso de uso: completa o diagrama de classes, sendo particulamento util na fase de especificacao de requisitos do sistema, pois mostra os usuarios e as funcionalidades do sistema.
+	
+# U3A4 - Ferramentas CASEs de modelagem de dados 
+- As Ferramentas CASE (Computer Aided Software Engineering) sao recursos que oferecem uma variedade de servicos para facilitar o processo de Desenvolvimento de software, podendo reduzir o tempo necessario para criar o software planejado.
+
+- Propositos das ferramentas CASE 
+	- Producao de codigo 
+		- Tem a capacidade de gerar automaticamente o codigo com base no diagrama grafico 
+	- Documentacao Automatica 
+		- Facilitama a padronizacao dos processos de documentacao 
+	- Realizacao de testes 
+		- Permitem a validacao das especificacoes formais de desenvolvimento 
+	- Elaboracao de relatorios 
+	
+- Propositos 
+	- Suporte para elaboracao de representacao graficas;
+	- Utilzacao de alguma forma de notacao para modelagem de banco de dados;
+	- Capacidade de gerar scripts SQL;
+	- Forward Engineer: permite, a partir do modelo de diagrama de entidade-relacionamento (DER), automatizar a conexão com o banco de dados e gerar automaticamente o modelo físico.
+	- Reverse Engineer: possibilita criar o modelo gráfico (DER) do banco de dados a partir do modelo físico já existente.
+	- Geracao de documentacao;
+	
+- as primeiras ferramentas CASE surgiram nos anos 80 e eram categorizadas em dois tipos:
+    - Lower CASE: fornece suporte nas fases de análise e projeto de sistemas.
+    - Upper CASE: oferece assistência nas fases de construção e análise de sistemas.
+
+- Atualmente, as ferramentas CASE são classificadas como Integrated CASE, combinando os recursos do Lower CASE e Upper CASE, abrangendo praticamente todas as etapas de um projeto de sistemas. Independentemente de seu tipo, todas as ferramentas CASE compartilham a capacidade de representar graficamente elementos do projeto, como diagramas de entidade-relacionamento, diagramas de classes, casos de uso, entre outros. 
+
+# U4A1 - Normalizacao de Dados 
+- A essencia fundamntal da modelagem de dados reside na otimizacao de procedimentos. Isso implica que ha sempre espaco para aprimorar o que ja foi realizado.
+- Uma vez que tenhamos elaborado o Diagrama Entidade-Relacionamento, podemos simplesmente implementa-lo em um SGBD?
+- A redundancia é frequentimente, o principal desafio em banco de dados.
+- O dano mais critico causado pela redundancia é a repeticao da mesma informacao em diversas tabelas, o que alem de criar duplicidade, pode levar a erros em relatorios.
+
+- Normalizacao de Dados 
+	- O processo de normalizacao compreende o uso de um conjunto de regras, chamados de formas normais.
+	- Dados dentro dos padroes de normalizacao reduz o trabalho de manutencao e ajuda a evitar o desperdicio do espaco de armazenamento em banco de dados.
+	- Pode ser aplicado em qualquer fase do projeto de banco de dados, tem como objetivo criar um conjunto de entiddes que satisfacam os requisitos do projeto fazendo reducao maxima da redundancia de dados 
+
+- Existem, duas abordagens/metodologias que podem ser empregadas no processo de normalização de um banco de dados:
+    - Abordagem de cima para baixo (Top-Down): 
+		- envolve a organização de atributos em relações que são definidas a partir do projeto conceitual. Uma análise é realizada nessas relações, descompondo-as em entidades e relacionamentos até que as propriedades desejadas para a implementação física sejam alcançadas.
+    - Abordagem de baixo para cima (Bottom-Up): 
+		- é uma abordagem reversa à anterior, na qual os relacionamentos entre os atributos são o ponto de partida para o processo, e, igualmente, usados na construção das relações. Também é chamada de projeto por síntese.
+
+- Dependencia Funcional 
+	- Dados dois conjuntos de atributos A e B e uma entidade, diz-se que B é funcionamente dependente ou A determina B se a cada valor de A estiver associado um, e só um, valor de B.
+	- exemplo:
+	| Codigo_Funcionario | 	Nome 	| Sobrenome | Departamento |
+	|		 125 		 | 	Silvia 	| Martins	| 	  003 	   |
+	| 		 236 		 | 	Ana 	| Martins   | 	  016 	   |
+	| 		 555		 | Antonio 	| Oliveira  | 	  003 	   |
+	- Departamento pode determinar o codigo_funcionario?
+	- Nao, pois o departamento 003 aparece em duas tuplas (para os funcionarios 125 e 555)
+	
+	- codigo_funcionario pode determinar o departamento?
+	- Sim, pois se conhecendo o Codigo_Funcionario (atributo univoco) é possivel determinar o departamento (um funcionario só pode pertencer a um departamento)
+	
+- Categorias de Dependencia Funcional:
+	- Total (ou completa)
+		- Na total, a dependência existe somente se a chave primária, composta por diversos atributos, for capaz de determinar de forma única um atributo ou um conjunto de atributos.
+	- Parcial
+		- Quando um atributo ou conjunto de atributos depende apenas de parte dos valores da chave primária
+	- Transitiva
+		- ela ocorre quando um atributo ou conjunto de atributos depende de outro atributo ou conjunto de atributos que não fazem parte da chave primária.
+		
+# U4A2 - Formas Normais I 
+- Primeira Forma Normal (1FN)
+	- Uma tabela estara na 1FN se, e somente se, todos os atributos forem atomicos, ou seja, nao contenham grupos repetitivos ou colunas com multiplos valores.
+	1. Identificacao da chave primaria da tabela 
+	2. Identificacao da coluna com dados repetidos 
+	3. Remocao da coluna com dados repetidos.
+	4. Criacao de uma nova tabela para armazenar os dados repetidos 
+	5. Estabelecimento de um relacionamento entre as tabela em processo de normalizacao e a nova tabela auxiliar.
+	
+- Segunda Forma Normal (2FN)
+	- Uma tabela estara em 2FN se, e somente se, estiver na 1FN e todas as suas colunas que nao fazem parte da chave primaria dependem exclusivamente de toda a chave primaria, e nao apenas parte dela.
+	1. Identificar as colunas que nao tem dependencia funcional com a chave primaria da tabela.
+	2. Remover essas colunas da tabela e criar uma nova tabela para armazenar esses dados.
+	
+- Terceira Forma Normal (3FN)
+	- Uma tabela estara na 3FN quando estiver na Segunda Forma Normal, e todos os campos forem idependentes, o que significa que nao deve haver dependencias funcionais entre os campos, e todos os campos devem depender exclusivamente da chave primaria da tabela.
+	1. Identificar os campos que tem dependencia funcional com outras colunas nao chaves.
+	2. Remover as Colunas Dependentes.
+	
+# U4A3 - Formas Normais II 
+- Forma Normal de Boyce-Codd (FNBC)
+	- Surgiu para resolver alguns problemas de redundancia de dados que se mantinham mesmo ao aplicar a 3FN. Ela é utilizada em casos que a tabela:
+		1. Tenha duas ou mais chaves candidatas (Chaves que poderiam ser usadas como primaria)
+		2. Essas chaves candidatas devem ser compostas (Uma chave composta de duas chaves candidatas)
+		3. Essas chaves tem superposicao - superposicao acontece quando ha atributos em comun.
+	- A tabela estara em FNBC quando todos os determinantes forem chaves candidatas.
+	- segue anexo: Anexos/ModelagemDeDados_U4A3_FNBC.png 
+		
+- Quarta Forma Normal (4FN)
+	- Em uma tabela na 4FN, Alem de satisfazer os criterios da 3FN, todos os campos devem ser considerados indivisiveis, ou seja, nao podem ser subdivididos em multiplos campos.
+	- Os passos para atingir a 4FN em uma tabela incluem:
+		1. Identificar os campos que causam dependencias multivaloradas, resultando em repeticoes.
+		2. Criar uma nova tabela para cada conjunto multivalorado.
+		3. Estabelecer uma chave primaria para cada nova tabela.
+		4. Inserir chaves estrangeiras na tabela que esta sendo normalizada (na 4FN) para estabelecer os relacionamentos necessarios entre as tabelas.
+	- Segue anexo: Anexos/ModelagemDeDados_U4A3_4FN.png 
+	
+- Quinta Forma Normal (5FN)
+	- Uma condicao essencial para que uma tabela alcance a 5FN é que ela ja esteja na 4FN.
+	- De maneira concisa, podemos afirmar que uma tabela atinge a 5FN quando nao é mais possivel subdividi-la em tabelas menores do que a original sem perder informacoes.
+	
+# U4A4 - Engenharia Reversa de bancos de dados
+- Como Funciona a engenharia reversa em banco de dados?
+	- A substituicao de um sistema legado por um novo é um processo dispendioso em termos de tempo e recursos.
+	- Esses sistemas constumam armazenar uma grande quantidade de dados valiosos que precisam ser migrados para a nova aplicacao, a qual pode seguir um esquema completamente diferente.
+	- Quando a decisao é feita para substituir o sistema legado por um novo o processo de engenharia reversa é adotado
+	
+- Como fazer a engenharia reversa de banco de dados?
+	- A Utilizacao de ferramentas adequadas que facilitam a engenharia reversa tambem é importante nesse processo.
+	- Procure no mercado as ferramentas apropriadas para a modelagem fisica e com uma potente funcionalidade de engenharia reversa.
+	- Pontos principais:
+		- Coleta de informacoes;
+		- Analise do banco de dados;
+		- Uso de Ferramentas de engenharia reversa;
+		- Documentacao e modelagem;
+		- Validacao e ajustes;
+		- Manutencao continua.
+		
+- Engenharia Reversa de banco de dados 
+	- É uma abordagem fundamental para lidar com sistemas legados e para melhorar a compreensao e a manutencao de banco de dados existentes.
+	- É uma tarefa desafiadora, mas o uso de ferramentas apropriadas e a colaboracao com as partes interessadas adequadas tornarao o processo mais eficiente e preciso.
