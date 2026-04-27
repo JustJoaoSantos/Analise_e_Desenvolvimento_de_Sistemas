@@ -51,7 +51,7 @@
 		- Exemplos: Sistema de cadastro de clientes, sistema de gestao empresarial.
 		
 - Data Mining 
-	- O termo mineracao de dados (data mining) refere-se em geral, ao processo de analisar grandes bancos de dados para encontrar pradoes uteis.
+	- O termo mineracao de dados (data mining) refere-se em geral, ao processo de analisar grandes bancos de dados para encontrar padroes uteis.
 	- assim como a descoberta de conhecimento na IA (ou machine learnig) ou na analise estatistica, a mineracao de dados tenta descobrir regras e padroes a partir dos dados.
 	- Busca a descoberta do conhecimento nos bancos de dados.
 	
