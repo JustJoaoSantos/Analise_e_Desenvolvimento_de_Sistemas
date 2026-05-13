@@ -206,7 +206,7 @@
 	  Essa tecnica e comum em banco de dados menores.
 	  
 # U3A3 - Notacao UML para modelagem de Dados
-- A UML (Unified Modeling Language) é umal inguagem padrao amplamente utilzada para modelar sistemas orientados a objetos.
+- A UML (Unified Modeling Language) é uma inguagem padrao amplamente utilzada para modelar sistemas orientados a objetos.
 - A UML nao é uma metodologia de Desenvolvimento por si só, mas sim uma linguagem que auxilia na visualizacao e comunicacao de conceitos em sistemas orientados a objetos.
 - Ela oferece uma maneira padronizada de representar o trabalho dos desenvolvedores em diagramas, sendo especialmente util na criacao de modelos de sistemas de software.
 
