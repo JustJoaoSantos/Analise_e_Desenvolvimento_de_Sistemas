@@ -1,5 +1,5 @@
 # U1A1 - Introducao aos sistemas operacionais
-- oq ue é
+- oque é
 	- Um sistema operacional é um software que gerencia os recursos de hardware e software de um computador
 	- um intermediario entre software e hardware 
 	- fornece uma interface entre o usuario e o computador para que o usuario possa utilizar estes servicos de forma intuitiva
@@ -44,15 +44,15 @@
 	
 # U1A2 - Evolucao dos sistemas operacionais
 - OSs
-	- 1st sistemas monotarefa/monoprogramaveis
+	- 1 sistemas monotarefa/monoprogramaveis
 		- UCP
 		- Memoria principal
 		- Dispositivos de E/S 
-	- 2nd sistemas multitarefa/multiprogramaveis
+	- 2 sistemas multitarefa/multiprogramaveis
 		- Sistemas Batch
 		- Sistemas de tempo compartilhado
 		- Sistemas de tempo real 
-	- 3rd Sistemas com multiprocessadores
+	- 3 Sistemas com multiprocessadores
 		- Fracamente acoplados
 			- SMP
 			- NUVA
@@ -72,7 +72,7 @@
 	- Multiprogramaveis Multiusuraio
 		- compartilha os recursos como dispositidos de E/S entre varios usuarios
 	
-- Tipos de multiporgramaveis
+- Tipos de multiprogramaveis
 	- Batch: armazenado em fita ou disco, nao exige interacao com usuario 
 	- Tempo compartilhado: divide o tempo do processador em intervalos, cada usuario possui seu ambiente de trabalho proprio
 	- Tempo Real: Precisam dedicar toda a sua capacidade de processamento para executar uma determinada tarefa.
@@ -182,10 +182,10 @@
 - Introducao
 	- a estrutura de um SO é carregado todas as vezes em que o pc for ligado ou reiniciado
 	- esse processo de chama ativacao ou boot
-	- o SO é composto basicamente por um conjunto de rotinas como nucleo do sistema, chamado kernel, que tem por funcao realizar o controle e tratamente de interrupcoes e excecoes, criar e eleminar processos e threads, sincronizar a comunicacao entre elses e escalonar e controla-los
+	- o SO é composto basicamente por um conjunto de rotinas como nucleo do sistema, chamado kernel, que tem por funcao realizar o controle e tratamente de interrupcoes e excecoes, criar e eliminar processos e threads, sincronizar a comunicacao entre eles e escalonar e controla-los
 
 - Processos
-	- instancia de um programa de computador qeu esta sendo executada.
+	- instancia de um programa de computador que esta sendo executada.
 	- é de responsibilidade desse conjunto de rotinas gerenciar memoria, sistemas de arquivos, dispositivos E/S, permitir suporte a redes locais, realizar contabilizacao das acoes do sistema e tambem sua auditoria e seguranca.
 	- para cada uma das rotinas que o sistema executa há um mecanismo de controle chamado de system call, que pode ser explicito ou implicito
 
@@ -213,7 +213,7 @@
 
 	- Execucao: esta sendo processado pela CPU.
 	- Bloqueado: esta no estado de espera quando aguardo um evento externo (e.g input do usuario) ou pro um recurso.
-	- Pronto: possui todas as condicoes necessarias para executar e estar aguradando.
+	- Pronto: possui todas as condicoes necessarias para executar e esta aguardando.
 	
 - Implementacao de processos 
 	- para implementar o modelo de processo o SO mantem um quadro de processos contendo informacoes sobre o estado do processo, seu contador de programa, o ponteiro da pilha, a alocacao de memoria, o status dos arquivos abertos, entre outros, que permite que o processo reinicie do ponto em que parou.
@@ -236,7 +236,7 @@
 	- Atraves da interacao com os aplicativos,
 	- Atraves das linguagems de comando.
 	
-- Para identificar qual deles devera ser acionado, o SO recebe o status daquela situacao, que e definido por uma sequencia de bits de identificacao (ID) no registrador responsavel por essa operacao.
+- Para identificar qual deles devera ser acionado, o SO recebe o status daquela situacao, que é definido por uma sequencia de bits de identificacao (ID) no registrador responsavel por essa operacao.
 - Modo Usuario: isso quer dizer que apenas instrucoes chamadas nao privilegiadas poderam ser executadas e por isso uma quantidade menor de instrucoes a executar.
 - Modo Kernel: o sistema tem acesso irrestrito as intrucoes do processador.
 
@@ -265,7 +265,7 @@
 	- os processos que necessitam de processamento ocuparao a CPU por um tempo maior e nao precisaram da intervencao do usuario.
 	
 - Criterios de Escalonamento 
-	- alguns sao nescesarios e determinados de acordo com as Caracteristicas do SO.
+	- alguns sao necesarios e determinados de acordo com as Caracteristicas do SO.
 	- dentre os criterios, podemos elencar a analise de eficiencia e utilizacao do processador.
 	- o recomendade é que o nivel de capacidade esteja ocupando, em media, 90% para ser considerado alto, ou seja, com bom potencial de aproveitamento do recurso.
 	- Outro criterio para a definicao do escalonamento é o throughput, esse é um indicador que mostra quantos processos foram executados dentro de um intervalo de tempo.
@@ -361,7 +361,7 @@
 	- cada modelo tem suas caracteristicas e trade-offs e a escoha de modelo depende dos requisitos especificos do sistema e do aplicativo.
 
 - Modelo Many-to-One
-	- varias threads denivel de usuario sao mapeadas para uma unica thread de nivel kernel.
+	- varias threads de nivel de usuario sao mapeadas para uma unica thread de nivel kernel.
 	- a implementacao das threads de nivel usuario é feita inteiramente no espaco do processo do usuario e o SO nao tem conhecimento das threads.
 	
 - Modelo One-to-One 
@@ -789,3 +789,45 @@
 	- A relocação é a transferência de um código de um local para outro de forma que um programa não escreva na área de outro programa.
 	- A relocação é necessária uma vez que processos executam em diferentes endereços na memória física.
 	- Tanto os problemas de relocação quanto de proteção podem ser resolvidos fornecendo o processador com dois registradores(memória localizada no processador): base e limite
+
+# U4A4 - Memoria Virtual 
+- Um computador que utiliza memória virtual permite que o volume de informações de um programa como código dado e pilha ultrapasse a quantidade total de memória física disponível para ele, mantendo as partes ativas na memória e as demais no disco rígido.
+- A memória virtual é um arquivo dinâmico e de tamanho variável na maioria dos sistemas operacionais.
+- A memória virtual permite que vários processos compartilhem a memória principal, uma vez que, somente algumas partes dos processos estarão ativas na mesma, possibilitando uma utilização eficiente do processador e reduzindo a fragmentação da memória principal
+- É comum associar o conceito de memória virtual com vetores em função de os dados serem alocados em posições distintas, não haver a necessidade de saber a exata posição de um determinado dado.
+- Instruções de código sejam desenvolvidas para que no contexto de software possam trazer a instrução de acordo com a sua respectiva identificação.
+- A diferença é que um aplicativo ou software não fará a referência direta aos endereços de memória física do processo, e sim ao seu respectivo endereço de memória virtual.
+- Em termos de processamento, por esse necessitar apenas do endereço físico, temos a conversão do endereço virtual ao seu em memória principal
+- A memória virtual se mostra como uma solução em função de trabalhar com uma quantidade maior de processos que compartilham a memória principal, uma vez que destes processos já estão alocadas apenas as partes residentes.
+- Isso faz com que menos recursos de processamento sejam utilizados.
+	- Existem três técnicas para implementar memória virtual:
+		- Paginação;
+		- Segmentação;
+		- Segmentação com paginação
+		
+- Paginaçao 
+	- A paginação é a técnica de gerência de memória em que o endereçamento virtual e o espaço de endereçamento real são divididos em blocos do mesmo tamanho chamado páginas.
+	- Foi criada para fornecer um espaço de endereçamento linear sem a necessidade de adquirir mais memória física.
+	
+- Gerenciamento da demanda de processos no contexto de alocacao de recursos em memoria virtual 
+	- para permitir o controle de demanda, foi criada a política de busca de páginas.
+	
+		- Essa pode ser classificada em: paginação por demanda, ou seja, há a transferência da memória secundária para a principal apenas quando há a referência e ainda há a paginação antecipada, voltada também para o controle de demanda, no entanto com o acréscimo de páginas, caso o processo venha precisar já tem algumas alocadas e a disposição
+	- Alem da politica de buscas, temos tambem as seguintes politicas:
+		- Alocacao de paginas 
+		- Substituicao de paginas 
+		- Working set 
+		- Algoritimos de substituicao de paginas 
+			- Ótimo.
+			- Aleatória.
+			- FIFO (First in First out).
+			- LFU (Least – Frequently - Used).
+			- LRU (Least – Recently - Used).
+			- NRU (Not – Recently - Used).
+			- FIFO com buffer de páginas.
+			- FIFO circular
+		- Politica para estabelecer o tamanho da pagina 
+		- Paginacao com multiplos niveis 
+		- traducao de enderecos virtuais em enderecos reais
+		- protecao de memoria 
+		- compartilhamento de memoria.
