@@ -660,3 +660,450 @@
 		- Escalabilidade: Oferece agilidade na expansão ou contratação de
 			recursos, permitindo que as organizações respondam rapidamente às
 			mudanças nas condições do mercado
+			
+# U2A1 - Serviços de Processamento de Dados 
+## Serviços de Redes em Provedores de Computaçao em Nuvem
+- Um processo é uma instância de um programa de
+	computador que está sendo executada.
+- Um dos aspectos mais importantes no momento de criar
+	uma aplicação na nuvem ou de migrar para a nuvem uma
+	aplicação já existente é a estimativa dos custos dos
+	serviços.
+- Uma das características da computação em nuvem é o
+	pagamento baseado no uso.
+- Você conhece os modelos utilizados pelos provedores para
+	determinar os preços dos serviços?
+	
+- Modelos / Provedores e Exemplo de Serviços 
+- segue anexo: Anexos/CeN_U2A1_IaaS.png, CeN_U2A1_PaaS.png e CeN_U2A1_SaaS.png
+
+- As aplicações em nuvem (SaaS) são utilizadas por usuários finais.
+- A cobrança por esses serviços é na forma de uma
+	assinatura, com pagamento mensal ou anual.
+- Os serviços IaaS e PaaS são utilizados por empresas ou
+	profissionais de TI e o cálculo do preço associado a esses
+	serviços envolve diversas variáveis.
+	
+- Cada provedor ofereça uma ferramenta de gerenciamento
+	de custos e é necessária uma solução adicional centralizada
+	para agregar os custos dos diferentes provedores.
+- Entre as principais soluções destaca-se as plataformas:
+	CloudHealth e Cloudability.
+	
+- Estas plataformas, CloudHealth e Cloudability, além do
+	monitoramento centralizado dos gastos, permitem também
+	a otimização do uso dos recursos, definição de orçamentos
+	(limites de gastos, por exemplo, para cada tipo de recurso),
+	análise de despesas, mecanismos para alinhamento contábil
+	com políticas de governança corporativa, etc.
+- Ambas as plataformas são projetadas para serem agnósticas
+	em relação aos provedores de nuvem, o que significa que
+	podem ser utilizadas para gerenciar ambientes em nuvem
+	de diversos fornecedores, como AWS, Azure e Google Cloud.
+ 	Essas ferramentas ajudam as organizações a evitar custos
+	desnecessários, identificar oportunidades de economia e
+	melhorar a eficiência operacional em ambientes em nuvem.
+	
+- CloudHealth
+	- Gerenciamento de Custos: Oferece uma visão detalhada dos
+		custos em nuvem, permitindo o rastreamento e análise de
+		gastos em tempo real.
+	- Otimização: Identifica oportunidades para otimizar a
+		utilização de recursos, sugerindo ajustes para reduzir custos.
+	- Gestão de Desempenho: Monitora o desempenho dos
+		recursos em nuvem para garantir eficiência operacional.
+	- Segurança e Conformidade: Ajuda a garantir a segurança e a
+		conformidade dos recursos na nuvem.
+		
+- Cloudability 
+	- Visibilidade de Custos: Fornece visibilidade abrangente dos
+		custos na nuvem, incluindo gastos por serviço, equipe ou
+		projeto.
+	- Otimização Automática: Oferece recomendações
+		automáticas para otimizar custos, como a escolha de
+		instâncias mais econômicas.
+	- Acompanhamento de Orçamento: Permite o rastreamento
+		em tempo real do consumo em relação aos orçamentos
+		estabelecidos.
+	- Análise de Tendências: Fornece insights sobre padrões de
+		gastos e tendências ao longo do tempo
+		
+- Existem três métricas básicas que são considerados na
+	determinação do custo de serviços em nuvem:
+	- Uso de recursos de processamento é uma métrica
+		calculada a partir do tempo de uso de núcleos de
+		processamento de máquinas virtuais em geral esse
+		custo é proporcional a quantidade de memória RAM.
+	- Uso de recursos de armazenamento: essa métrica
+		serve para tarifar o espaço utilizado para
+		armazenamento persistente de dados e é uma
+		cobrança mensal para cada gigabyte de dados
+		armazenados.
+	- Uso de recursos de transmissão de dados: essa
+		métrica serve para tarifar os dados transferidos entre
+		a rede do provedor e outras redes.
+	- Como a transmissão pode ocorrer nos dois sentidos, o
+		provedor pode definir preços diferentes para tráfego
+		de saída e de entrada.
+	- Se você aloca uma máquina virtual além de pagar pelo
+		uso da máquina e do armazenamento, também poderá
+		ser cobrado pelos dados que foram enviados para essa
+		máquina ou para outro computador qualquer.
+
+## Serviços para instanciar e gerenciar containers
+- Outro tipo importante de serviço para execução de
+	aplicações é a instanciação de contêineres.
+- Quando uma empresa cliente precisa executar uma
+	aplicação em um provedor, ela pode criar um contêiner para
+	executar essa aplicação, em vez de criar uma máquina
+	virtual.
+- Além de escalonamento automático, os serviços de
+	contêineres facilitam a replicação das instâncias de
+	execução pois eles exigem menos recursos que as máquinas
+	virtuais, implicando em custos mais baixos.
+
+- A instanciação por contêineres oferece:
+	- Escalonamento automático;
+	- Exigência de menos recursos;
+	- Facilidade na replicação das instâncias de execução;
+	- Custos mais baixos.
+	
+## Instancias de servidores virtuais na nuvem
+- As instâncias de servidores virtuais na nuvem são máquinas
+	virtuais (VMs) provisionadas em ambientes de computação
+	em nuvem.
+- Essas instâncias oferecem poder computacional, memória,
+	armazenamento e outros recursos necessários para executar
+	aplicativos e serviços. Cada provedor de nuvem tem seus
+	próprios termos para essas instâncias.
+- Um fator que influencia muito os preços é o tipo de
+	alocação, sendo os dois principais: alocação de instâncias
+	sob demanda e alocação de instâncias reservadas.
+	
+- Alocaçao de Instancias sob demanda:
+	- É caracterizada pelo provisionamento dinâmico da máquina
+		virtual no instante da solicitação, caso existam recursos
+		disponíveis.
+	- A alocação de instâncias sob demanda é um modelo de
+		provisionamento em nuvem onde os usuários podem
+		adquirir recursos de computação conforme necessário, sem
+		a necessidade de compromissos de longo prazo.
+	- Esse modelo é particularmente associado a serviços de
+		nuvem pública, como Amazon Web Services (AWS), Microsoft
+		Azure, Google Cloud Platform (GCP) e outros.
+		
+- Characteristicas de Alocaçao de Instancias dob demanda:
+	- Pagamento por Uso: Os usuários pagam apenas pelos
+		recursos que consomem, calculados com base na
+		quantidade de tempo em que as instâncias estão em
+		execução. Não há a necessidade de investir
+		antecipadamente em capacidade fixa.
+	- Flexibilidade e Escalabilidade: Os usuários podem escalar
+		horizontalmente adicionando ou removendo instâncias de
+		acordo com a demanda. Isso oferece flexibilidade para lidar
+		com picos de carga e variações na demanda sem a
+		necessidade de provisionar recursos permanentemente.
+	- Sem Compromissos de Longo Prazo: Ao contrário de modelos
+		de instâncias reservadas, a alocação sob demanda não
+		requer compromissos de longo prazo. Os usuários podem
+		iniciar ou encerrar instâncias conforme necessário,
+		adaptando-se às mudanças nos requisitos operacionais.	
+	- Rápida Disponibilidade: As instâncias sob demanda estão
+		prontas para uso quase instantaneamente. Os usuários
+		podem provisionar recursos rapidamente em resposta a
+		mudanças nas necessidades operacionais.
+	- Custo Variável: O custo de instâncias sob demanda varia
+		conforme a oferta e a demanda do mercado. Em períodos de
+		menor demanda, os preços podem ser mais baixos,
+		proporcionando oportunidades para redução de custos.
+	- Recomendado para Cargas de Trabalho Variáveis: Este
+		modelo é frequentemente recomendado para cargas de
+		trabalho com demanda variável, onde os requisitos de
+		recursos podem flutuar ao longo do tempo.
+	- Pricing On-Demand: As instâncias sob demanda geralmente
+		são cobradas por hora ou segundo de uso, dependendo do
+		provedor de nuvem. Os usuários pagam apenas pelo tempo
+		que as instâncias estão em execução
+		
+- Alocaçao de Instancias Reservadas:
+	- Um fator que influencia muito os preços é o tipo de
+		alocação, sendo os dois principais: alocação de instâncias
+		sob demanda e alocação de instâncias reservadas.
+	- A alocação de instâncias reservadas é um modelo de
+		provisionamento em nuvem onde os usuários
+		comprometem-se a usar uma quantidade específica de
+		recursos de computação em uma região específica durante
+		um período de tempo mais longo, geralmente de um a três
+		anos.
+	- Esse modelo oferece preços significativamente reduzidos em
+		comparação com as instâncias sob demanda,
+		proporcionando economias para cargas de trabalho
+		previsíveis e estáveis.
+		
+- Caracteristicas de Alocaçao de Instancias Reservadas:
+	- Compromisso de Longo Prazo: Os usuários fazem um
+		compromisso de longo prazo para utilizar uma quantidade
+		específica de recursos em uma região específica por um
+		período fixo, geralmente um ou três anos.
+	- Economias de Custos: Ao fazer esse compromisso, os
+		usuários obtêm descontos significativos em comparação
+		com o preço de instâncias sob demanda. As instâncias
+		reservadas oferecem uma forma de otimizar custos para
+		cargas de trabalho previsíveis.
+	- Estabilidade de Preços: Os preços das instâncias reservadas
+		são estáveis ao longo do período do compromisso,
+		independentemente das flutuações na demanda ou nos
+		preços de mercado.
+	- Flexibilidade de Configuração: As instâncias reservadas
+		oferecem flexibilidade em termos de configurações,
+		permitindo que os usuários escolham o tipo de instância, a
+		família de instâncias, o sistema operacional e outras opções.
+	- Recomendado para Cargas de Trabalho Estáveis: Este
+		modelo é particularmente recomendado para cargas de
+		trabalho que têm requisitos de recursos mais estáveis e
+		previsíveis ao longo do tempo.
+	- Combinação com Instâncias Sob Demanda: Alguns usuários
+		optam por uma estratégia híbrida, combinando instâncias
+		reservadas para cargas de trabalho previsíveis com
+		instâncias sob demanda para lidar com flutuações
+		imprevisíveis na demanda
+	- Pricing Upfront ou Sem Adiantamento: Alguns provedores de
+		nuvem oferecem opções de pagamento upfront (pagamento
+		antecipado) ou sem adiantamento, proporcionando
+		diferentes estratégias de pagamento para os usuários
+		
+# U2A2 - Serviços de Armazenamento e Analise de Dados 
+## Serviços de Banco de dados em nuvem 
+- A utilização de serviços de armazenamento de dados em
+nuvem traz uma série de vantagens, como redução de
+custos, delegação (para o provedor) das tarefas de
+gerenciamento e otimização dos bancos de dados e
+escalabilidade.
+
+- Serviços de Banco de Dados em Nuvem
+	- Os serviços de banco de dados em nuvem oferecem opções
+		flexíveis e escaláveis para armazenar, gerenciar e acessar
+		dados em ambientes de computação em nuvem.
+	- Esses serviços eliminam a necessidade de gerenciamento de
+		infraestrutura física e simplificam tarefas como backup,
+		recuperação, escalabilidade e manutenção
+		
+- Alguns dos serviços de banco de dados em nuvem
+	oferecidos por provedores de nuvem:
+	- Amazon RDS (Relational Database Service): Oferecido
+		pela AWS, o Amazon RDS é um serviço totalmente
+		gerenciado que suporta diversos bancos de dados
+		relacionais, como MySQL, PostgreSQL, Oracle, SQL
+		Server e MariaDB.
+	- Microsoft Azure SQL Database: O serviço de banco de
+		dados relacional da Microsoft Azure oferece suporte a
+		SQL Server e MySQL. Ele fornece um ambiente
+		totalmente gerenciado, escalável e seguro
+	- Google Cloud SQL: Oferecido pelo Google Cloud
+		Platform, o Cloud SQL oferece suporte a MySQL,
+		PostgreSQL e SQL Server. Ele fornece um ambiente
+		gerenciado para implantação e manutenção de bancos
+		de dados.
+	- Amazon DynamoDB: é um serviço de banco de dados
+		NoSQL oferecido pela AWS. Ele fornece
+		armazenamento de chave-valor e é conhecido por sua
+		escalabilidade e baixa latência.
+	- Microsoft Azure Cosmos DB: é um serviço de banco de
+		dados globalmente distribuído, multi-modelo e multi-
+		API na plataforma Azure. Ele suporta modelos de
+		dados como documentos, gráficos, chaves e famílias
+		de colunas.
+	
+## Serviços em nuvem para análise de dados
+- Os serviços em nuvem para análise de dados fornecem
+	soluções escaláveis e eficientes para processamento,
+	armazenamento e visualização de grandes conjuntos de
+	dados. Esses serviços facilitam a realização de análises
+	complexas, aprendizado de máquina e geração de insights a
+	partir de dados.
+- segue anexo: Anexo/CeN_U1A2_servico_nuvem.png
+
+## Serviços em nuvem para armazenamento em blocos e de objetos
+- A elasticidade dos serviços em nuvem, a alocação de
+	recursos de armazenamento de dados pode ser feita de
+	forma incremental com o pagamento pelo uso.
+- Um cliente pode alocar mais capacidade de armazenamento
+	a medida que mais dados são gerados pelas aplicações.
+	
+- Existe uma grande variedade de serviços de
+	armazenamento de dados em nuvem.
+- Para escolher o mais adequado é importante avaliar como os
+	dados devem ser estruturados, o volume de dados a ser
+	manipulado e os requisitos da aplicação.
+	
+- Existe uma grande variedade de serviços de
+	armazenamento de dados em nuvem.
+- Existem quatro tipos de serviços de armazenamento de
+	dados em ambientes de Computação em Nuvem:
+	- Armazenamento em blocos: as unidades podem ser
+		acessadas remotamente por meio de uma rede de alto
+		desempenho dedicada para interconexão de
+		equipamentos de armazenamento de dados e é
+		denominado Redes de Armazenamento de Dados
+		(SAN- Storage Area Network);
+	- Armazenamento de arquivos: leitura e escrita em
+		diretórios com sistema de arquivos gerenciado pelo
+		provedor.
+	- O cliente do provedor de nuvem pode manipular
+		arquivos remotamente utilizando tecnologias para
+		sistemas de arquivos distribuídos como o Network File
+		System (NFS).
+	- Armazenamento de objetos: repositório para itens
+		de dados binários (como vídeos, imagens, etc.).
+	- Armazenamento de bases de dados: sistemas de
+		gerenciamento de banco de dados (SGBDs)
+		mantidos pelo provedor.
+- Segue anexo: Anexos/CeN_U1A2_estado_processo.png, CeN_U1A2_tipos_servicos.png, CeN_U1A2_tipos_servicos2.png
+
+- A principal barreira ao uso de armazenamento em nuvem
+	pública são os aspectos de segurança e privacidade, pois os
+	dados são acessados por meio da Internet.
+- É imprescindível que os provedores ofereçam mecanismos
+	de segurança para proteger os dados dos clientes.
+- Devem ser implementadas soluções para garantir o sigilo de
+	informações sensíveis, como dados financeiros ou
+	informações com segredo industrial de empresas
+- Outro desafio para armazenamento em nuvem é o
+	desempenho, em termos da latência de acesso remoto aos
+	dados.
+- Se uma aplicação precisa acessar dados que estão
+	armazenados em outro provedor, o tempo de transferência
+	pode comprometer o desempenho da solução e o
+	processamento de consultas a dados em nuvem são tarefas
+	complexas o que exige significativa capacidade
+	computacional para garantir um desempenho satisfatório.
+- A principal finalidade dos serviços de armazenamento em
+	bloco na nuvem é servir como discos para instâncias como
+	máquinas virtuais (VMs) ou contêineres.
+- Essas instâncias precisam de capacidade de armazenamento
+	de dados para executar as aplicações.
+- Quando a criação de uma instância é solicitada, o provedor
+	cria automaticamente uma unidade virtual de
+	armazenamento em bloco, que é usada como disco dessa
+	instância, ou seja, a unidade de armazenamento em bloco é
+	o disco da máquina virtual.
+	
+# U1A3 - Soluçao em Nuvem 
+## Soluções em nuvem para desenvolvimento de software
+- Ao escolher uma solução em nuvem, as organizações
+	avaliam suas necessidades específicas e selecionam
+	serviços que atendam aos requisitos de seus aplicativos e
+	operações.
+- A combinação de diferentes serviços em nuvem permite
+	criar soluções personalizadas que impulsionam a inovação e
+	a eficiência.
+
+- Soluçoes em nuvem para desenvolvimento de Software 
+	- Os provedores oferecem soluções para diversas etapas do
+		processo de desenvolvimento, desde a codificação até a
+		implantação e o teste de aplicações em ambientes de
+		produção nos provedores de Computação em Nuvem.
+	- Essas soluções permitem automatizar todo o ciclo de
+		criação, teste e implantação de aplicações em uma
+		infraestrutura gerenciada pelo provedor
+		
+## Serviços para aplicações multimídia em nuvem
+- Para aplicações multimídia em nuvem, que envolvem
+	processamento, armazenamento e entrega de conteúdo de
+	mídia, existem diversos serviços e ferramentas disponíveis.
+	Esses serviços podem ser úteis para lidar com vídeos, áudio,
+	imagens e outros tipos de conteúdo multimídia.
+	
+- Os serviços para aplicações multimídia são muito
+	importantes para facilitar o desenvolvimento de aplicações
+	de streaming de vídeo, por exemplo:
+	- Provedor AWS: oferece vários serviços de mídia.
+	- Elemental MediaConvert: é importante como recurso para
+		promover a portabilidade das soluções, pois permite gerar
+		mídias em diferentes formatos.
+	- AWS Elemental MediaConnect: é uma plataforma escalável e
+		flexível para transmissão de vídeo ao vivo.
+		
+- A Amazon Web Services (AWS) oferece uma ampla gama de
+	serviços de mídia para atender às diversas necessidades das
+	empresas e desenvolvedores na entrega, processamento e
+	gerenciamento de conteúdo de mídia:
+	- Escala e Infraestrutura Global: A AWS opera uma
+		infraestrutura global extensa, com data centers distribuídos
+		em várias regiões do mundo. Isso permite a entrega
+		eficiente de conteúdo de mídia em escala global, garantindo
+		baixa latência e alta disponibilidade.
+	- Serviços Especializados: A AWS oferece uma variedade de
+		serviços especializados voltados para diferentes aspectos do
+		ciclo de vida de mídia. Isso inclui serviços para
+		transcodificação de vídeos, entrega de conteúdo (CDN),
+		processamento de áudio, análise de vídeo, entre outros.
+	- Flexibilidade e Escalabilidade: Os serviços de mídia da AWS
+		são projetados para serem altamente flexíveis e escaláveis.
+		Isso permite que as empresas dimensionem recursos de
+		acordo com a demanda, garantindo que possam lidar com
+		picos de tráfego ou eventos ao vivo sem comprometer o
+		desempenho.
+	- Integração com Outros Serviços AWS: Os serviços de mídia
+		da AWS podem ser facilmente integrados com outros
+		serviços da plataforma AWS. Isso oferece uma abordagem
+		holística para construir soluções de mídia, incorporando
+		armazenamento, computação, análise de dados e muito
+		mais
+	- Soluções Completas para Transmissão ao Vivo: A AWS
+		oferece soluções abrangentes para transmissão ao vivo,
+		incluindo serviços para codificação, empacotamento,
+		entrega e gerenciamento de conteúdo ao vivo. Isso é
+		essencial para eventos ao vivo, como transmissões
+		esportivas, conferências online e entretenimento em tempo
+		real.
+	- Ferramentas de Gerenciamento e Monitoramento: A AWS
+		fornece ferramentas robustas de gerenciamento e
+		monitoramento que permitem às empresas acompanhar o
+		desempenho, analisar métricas de utilização e otimizar a
+		entrega de mídia para melhorar a experiência do usuário
+	- Parcerias e Ecossistema: A AWS colabora com vários
+		parceiros e desenvolvedores para expandir seu ecossistema
+		de serviços de mídia. Isso permite que as empresas
+		escolham entre uma variedade de soluções e integradores
+		de sistemas que complementam os serviços da AWS.
+	- Inovação Contínua: A AWS continua investindo em pesquisa
+		e desenvolvimento para introduzir novos recursos e serviços
+		na área de mídia. Isso significa que as empresas podem se
+		beneficiar das últimas inovações e tecnologias na entrega e
+		processamento de conteúdo de mídia.
+		
+## Serviços para aplicações de IoT na nuvem
+- A Internet das Coisas pode ser entendida como um cenário
+	no qual qualquer objeto com capacidade computacional e de
+	comunicação pode se conectar à Internet, o que possibilitou
+	o surgimento de novas aplicações que envolvem a
+	comunicação com ou entre esses objetos inteligentes.
+- Podemos mencionar novos importantes conceitos
+	decorrentes dos avanços em IoT como Cidades Inteligentes e
+	Indústria 4.0
+
+- IoT nas Nuvens 
+	- O conceito de Cidades Inteligentes consiste no uso de
+		tecnologias da informação e comunicação para tornar mais
+		eficiente a gestão dos centros urbanos, por exemplo, com
+		soluções para mobilidade e controle de iluminação pública.
+	- A Indústria 4.0 envolve o uso de tecnologias para inovação
+		nos processos industriais, por exemplo, em soluções de
+		monitoramento e manutenção preventiva de equipamentos
+		em fábricas ou soluções de logística e rastreamento de
+		produtos.
+		
+- Aplicaçoes de IoT na Nuvem
+	- Existem diversos serviços em nuvem para a implementação
+		de aplicações de IoT.
+	- segue anexo: CeN_U2A3_arquitetura_iot.png
+	- Para aplicações de IoT que usam dados de localização, uma
+		opção de serviço é o Azure Maps, que pode ser usado na
+		área de mobilidade urbana e sistemas de rastreamento de
+		objetos ou veículos.
+	- O serviço Google IoT Core pode ser utilizado como um IoT
+		Gateway para gerenciamento dos dispositivos e coleta de
+		dados.
+	- segue anexo: Anexo/CeN_U2A3_exemplo_iot.png
+	- segue anexo: Anexo/CeN_U2A3_relacao_iot_nuvem.png
