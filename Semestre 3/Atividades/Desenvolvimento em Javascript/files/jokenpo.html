@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpo</title>
+    <link rel="stylesheet" href="jokenpo.css">
+</head>
+<body style="text-align: center;">
+    <h1>JOKENPÔ!</h1>
+    <hr>
+
+    <input type="image" src="imgs/selec_rock.png" onclick="chooseHand(right_hand_rock)"/>
+    <input type="image" src="imgs/selec_paper.png" onclick="chooseHand(right_hand_paper)"/>
+    <input type="image" src="imgs/selec_scissor.png" onclick="chooseHand(right_hand_scissor)"/>
+
+    <p style="font-size:17px">Selecione uma mão para Iniciar!</p>
+
+    <canvas id="scene" width="1400px" height="400px">
+        <img id="left_hand_paper" src="imgs/left_paper.png" alt="">
+        <img id="right_hand_paper" src="imgs/right_paper.png" alt="">
+        <img id="left_hand_rock" src="imgs/left_rock.png" alt="">
+        <img id="right_hand_rock" src="imgs/right_rock.png" alt="">
+        <img id="left_hand_scissor" src="imgs/left_scissor.png" alt="">
+        <img id="right_hand_scissor" src="imgs/right_scissor.png" alt="">
+        <img id="scene_transition_jo" class="transition" src="imgs/scene_transition_jo.png" alt="">
+        <img id="scene_transition_ken" class="transition" src="imgs/scene_transition_ken.png" alt="">
+        <img id="scene_transition_po" class="transition" src="imgs/scene_transition_po.png" alt="">
+    </canvas>
+
+    <div id="resultMsg"></div>
+
+    <script src="jokenpo.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+* {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#scene {
+    border: 1px solid;
+}
+
+img {
+    width: 50%;
+    height: 50%;
+}
+
+input {
+    width: 75px;
+    height: 75px;
+}
+
+.victoryMsg {
+    font-size: 25px;
+    color: green;
+}
+
+.defeatMsg {
+    font-size: 25px;
+    color: red;
+}
+
+.drawMsg {
+    font-size: 25px;
+    color: blue;
+}
