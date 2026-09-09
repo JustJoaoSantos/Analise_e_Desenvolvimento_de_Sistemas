@@ -217,7 +217,7 @@
 		instalar atualizações (pois o acesso é remoto), nem
 		com espaço de armazenamento dos seus dados
 
-## Modelos de Serviço Especializados (DBaas, BaaS, BPaaS)
+## Modelos de Serviço Especializados (DBaaS, BaaS, BPaaS)
 - Modelo XaaS 
 	- Everything as a Service
 	- que poderia ser entendido como “qualquer coisa como serviço” ou
@@ -517,6 +517,7 @@
 		suporte para criação de nuvens federadas.
 		
 # U1A4 - Elasticidade e Escalabilidade 
+
 ## Conceito de elasticidade e como os recursos podem ser dimensionados automaticamente para atender a demanda
 - A elasticidade é a capacidade de um sistema ou
 	aplicação ajustar dinamicamente seus recursos de
@@ -1394,6 +1395,7 @@ escalabilidade.
 	- Independência de hardware;
 	- Consolidação de servidores;
 	- Facilidade de replicação de recursos.
+	
 ## Evolução de tecnologias de redes e datacenter
 - A evolução das tecnologias de redes e data centers tem sido
 	significativa nas últimas décadas, impulsionada por avanços
@@ -1421,38 +1423,41 @@ escalabilidade.
 		- Segurança.
 		
 # U3A2 - Provedores de Computação em Nuvem
+
 ## Métricas de custo de serviços em nuvem
 - O gerenciamento dos custos de serviços em nuvem é uma
 	tarefa difícil, uma vez que o cálculo do custo total envolve
 	várias métricas e os preços dos recursos computacionais
 	podem variar de acordo com a localização da infraestrutura
 	ou a forma de tarifação.
+	
 - Uma das características dos serviços de computação em
 	nuvem é o pagamento baseado no uso.
-- Três métricas na determinação do
-	custo de serviços em nuvem:
-- Uso de recursos de processamento
-	é uma métrica calculada a partir do
-	tempo de uso de núcleos de
-	processamento de máquinas virtuais. Em geral esse custo é 
-	proporcional a quantidade de memória RAM. O provedor tem a
-	sua calculadora de custos, para estimar os custos e a economia em
-	escolher cada um deles, um exemplo é a calculadora da Amazon.
-- Uso de recursos de
-	armazenamento essa métrica
-	serve para tarifar o espaço
-	utilizado para armazenamento
-	persistente de dados e é uma
-	cobrança mensal para cada
-	gigabyte de dados armazenados.
-- Uso de recursos de transmissão de
-	dados: essa métrica serve para
-	tarifar os dados transferidos entre
-	a rede do provedor e outras redes.
-	Como a transmissão pode ocorrer
-	nos dois sentidos, o provedor pode
-	definir preços diferentes para
-	tráfego de saída e de entrada.
+	
+- Três métricas na determinação do custo de serviços em nuvem:
+	- Uso de recursos de processamento:
+		É uma métrica calculada a partir do
+		tempo de uso de núcleos de
+		processamento de máquinas virtuais. Em geral esse custo é 
+		proporcional a quantidade de memória RAM. O provedor tem a
+		sua calculadora de custos, para estimar os custos e a economia em
+		escolher cada um deles, um exemplo é a calculadora da Amazon.
+	- Uso de recursos de armazenamento: 
+		Essa métrica
+		serve para tarifar o espaço
+		utilizado para armazenamento
+		persistente de dados e é uma
+		cobrança mensal para cada
+		gigabyte de dados armazenados.
+	- Uso de recursos de transmissão de dados: 
+		Essa métrica serve para
+		tarifar os dados transferidos entre
+		a rede do provedor e outras redes.
+		Como a transmissão pode ocorrer
+		nos dois sentidos, o provedor pode
+		definir preços diferentes para
+		tráfego de saída e de entrada.
+		
 - Se você aloca uma máquina virtual,
 	além de pagar pelo uso da
 	máquina e do armazenamento,
@@ -1460,26 +1465,30 @@ escalabilidade.
 	dados que foram enviados para
 	essa máquina ou dessa máquina
 	para outro computador qualquer.
+	
 - Além das métricas básicas, existem
 	também métricas adicionais,
 	associadas ao uso de componentes
 	de software. Nesse caso, é usual a
 	precificação por evento, e não pelo
 	tempo de uso.
+	
 - Um provedor poderia tarifar o
 	cliente pelo número de operações
 	de escrita em um SGBD ou pelo
 	número de requisições a uma
 	aplicação web.
+	
 - Por exemplo, um provedor poderia
 	cobrar do cliente R$ 2,00 para cada
 	1.000 requisições a um serviço
 	web.
+	
 - O gerenciamento eficiente dos
 	custos é uma consideração crítica
 	ao utilizar serviços em nuvem
 
-- Métricas para otimizar os custos 
+- Métricas para otimizar os custos:
 	- Custo por Hora/Minuto: Avaliar o custo por hora ou minuto	
 		de recursos computacionais, como instâncias de máquinas
 		virtuais, pode fornecer uma visão detalhada dos gastos e
@@ -1509,19 +1518,22 @@ escalabilidade.
 	armazenamento ou largura de banda. A vantagem é
 	flexibilidade para escalar recursos conforme necessário,
 	custos alinhados ao uso real.
+	
 - Reservas (Reserved Instances): os usuários podem optar por
 	reservar capacidade de recursos (como instâncias de
 	máquinas virtuais) antecipadamente por um período fixo. Em
 	troca, recebem descontos significativos em comparação com
 	o pagamento pelo uso. As vantagens são economias
 	substanciais para cargas de trabalho estáveis e previsíveis
+	
 - Preços por Compromisso (Committed Use Discounts):
 	semelhante as reservas, mas oferecendo mais flexibilidade.
 	Os usuários comprometem-se a gastar um valor específico
 	por mês em recursos específicos, obtendo descontos com
 	base nesse compromisso financeiro. A vantagem é maior
 	flexibilidade em comparação com reservas tradicionais.
-- Preços por Região os custos podem variar com base na
+	
+- Preços por Região: os custos podem variar com base na
 	região geográfica em que os recursos são provisionados.
 	Algumas regiões podem ter custos mais altos ou mais
 	baixos, dependendo da oferta e demanda local. A vantagem
@@ -1531,44 +1543,55 @@ escalabilidade.
 ## Principais provedores de nuvem pública (por exemplo, AWS, Azure, Google Cloud)
 - A computação em nuvem transformou radicalmente a forma
 	como as organizações gerenciam e fornecem serviços de TI.
+	
 - Os provedores de nuvem pública desempenham um papel
 	central nesse cenário, oferecendo infraestrutura,
 	plataformas e software como serviços escaláveis, flexíveis e
 	acessíveis.
+	
 - Essas empresas líderes desempenham um papel crucial na
 	evolução tecnológica, permitindo que organizações de todos
 	os tamanhos inovem, cresçam e permaneçam competitivas
 	em um ambiente digital em constante mudança.
+	
 - Os provedores de nuvem pública de serviços de
 	infraestrutura e plataforma (IaaS e PaaS), podemos
 	mencionar a AWS (Amazon Web Services), o Microsoft Azure
 	e o Google Cloud Platform.
+	
 - A computação em nuvem transformou radicalmente a forma
 	como as organizações gerenciam e fornecem serviços de TI.
 - A AWS, pioneira nesse mercado, oferece uma ampla gama
 	de serviços, desde computação e armazenamento até
 	aprendizado de máquina e Internet das Coisas (IoT).
+	
 - A Microsoft Azure integra-se perfeitamente ao ecossistema
 	Microsoft, proporcionando uma variedade de serviços em
 	nuvem e soluções híbridas para clientes empresariais.
+	
 - O Google Cloud Platform, impulsionado pela robusta
 	infraestrutura de data centers do Google, destaca-se por
 	suas capacidades em machine learning e análise de dados,
 	além de serviços de armazenamento e computação.
+	
 - Esses provedores não apenas oferecem recursos técnicos
 	avançados, mas também promovem a inovação por meio de
 	parcerias estratégicas e ecossistemas de desenvolvedores.
+	
 - A competição entre esses provedores impulsiona
 	constantemente a evolução da computação em nuvem,
 	resultando em melhorias contínuas nos serviços oferecidos,
 	preços mais competitivos e inovações tecnológicas.
+	
 - A presença desses líderes no cenário da nuvem pública
 	contribui significativamente para a transformação digital,
 	permitindo que empresas aproveitem ao máximo as
 	vantagens dessa tecnologia revolucionária.
+	
 - Em se tratando de soluções corporativas de software como
 	serviço (SaaS), podemos citar a Microsoft Salesforce, Adobe,
 	Oracle e SAP.
+	
 - É importante mencionar que a Salesforce, pioneira em
 	software coorporativo em nuvem, também mantém o
 	Heroku, um provedor PaaS, assim como o Openshit da Red
@@ -2144,6 +2167,7 @@ aplicações robustas e escaláveis.
 	aplicações em nuvem e o mais evidente é que os
 	desenvolvedores não precisam se preocupar em alocar
 	servidores o que facilita a implantação da aplicação.
+	
 ## Conceito de Edge Computing
 - Modelos de Arquitetura - Edge Computing:
 	● Mesmo com a evolução dos modelos de arquitetura ainda

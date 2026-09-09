@@ -1,0 +1,12 @@
+<section>
+    <form>
+        <input type="text" placeholder="Filtrar por Cidade">
+        <button class="primary" type="button">Pesquisar</button>
+    </form>
+</section>
+
+<section class="results">
+    @for (housingLocation of housingLocationList; track $index) {
+        <app-housing-location [housingLocation]="housingLocation"></app-housing-location>
+    }
+</section>
