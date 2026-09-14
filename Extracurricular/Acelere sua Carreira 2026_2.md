@@ -60,3 +60,12 @@
 - Contextualizar (o meio social/geográfico), 
 - Explicar (o nexo causal) 
 - Propor (intervenção viável e multissetorial).
+
+
+# Programação
+***
+## Biblíotecas do Python
+- NumPy: utilizado para lidar com dados numericos
+- Pandas: similar ao NumPy, poderem com a capacidade de organizar, limpar, tratar dados 
+- Matplotlib: criação, demonstraçao, renderização e organizacao de graficos
+- Seaborn: como o matplolib, porem pode lidar com maior quantidade de dados, possui mais recursos.
