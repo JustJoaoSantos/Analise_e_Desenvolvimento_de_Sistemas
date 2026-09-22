@@ -8,7 +8,7 @@
 1. São coleções de códigos-fonte, classes, funções, técnicas e
 	metodologias que dinamizam o desenvolvimento de softwares.
 2. Chamados de Arcabouços de softwares – fornecem
-	funcionalidade genérica, que pode ser configurada para
+	funcionalidade genérica, que pode ser configurada para ser
 	específica.
 3. Fazer Reuso.
 4. Utilizados em grande escala por desenvolvedores.
@@ -47,7 +47,7 @@
 	- Exemplos: NetBeans, GitHub, Bootstrap, Azure.
 	
 ### Tipos de Frameworks 
-• Para WEB(Django, Ruby, Lavarel).
+• Para WEB (Django, Ruby, Lavarel).
 • Para Mobile (Fluter, React, Native).
 • Para Desktop (Electron e QT).
 • Para Front-end (React, Angular).
