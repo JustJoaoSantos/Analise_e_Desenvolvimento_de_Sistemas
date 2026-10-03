@@ -1,0 +1,60 @@
+/* ==============================================
+    Catálogo
+=============================================== */
+.catalogo-main {
+    padding: var(--spacing-large);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Contêiner Flex principal para o catálogo */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap; /* permite quebra de linha */
+    gap: var(--spacing-medium); /* espaçamento entre items*/
+    justify-content: flex-start; /* alinha items ao inicio */
+}
+
+/* Item do produto (card) */
+.product-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    padding-bottom: var(--spacing-small);
+    text-align: center;
+
+    /* Configuração Flexbox para responsividade
+       Garante que o item ocupe um minimo e se expanda 
+       1: grow | 1: shrink | 300px: base-width (desktop) */
+    flex: 1 1 300px;
+    max-width: 300px;
+
+}
+
+.product-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-card img {
+    width: 290px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.product-info {
+    padding: var(--spacing-small), var(--spacing-medium);
+}
+
+.product-title {
+    font-size: 1.1rem;
+    margin: var(--spacing-small) 0;
+}
+
+.product-price {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: var(--spacing-medium);
+}

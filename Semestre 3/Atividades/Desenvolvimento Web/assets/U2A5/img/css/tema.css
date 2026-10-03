@@ -1,0 +1,42 @@
+/* ==============================================
+    Tema e Variáveis
+=============================================== */
+
+:root {
+    /* Cores */
+    --primary-color: #6a0dad;
+    --secondary-color: #ffc107;
+    --text-color: #333;
+    --light-bg: #f8f8f8;
+
+    /* Fontes */
+    --font-heading: 'Georgia', serif;
+    --font-body: 'Arial', sans-serif;
+
+    /* Espaçamentos */
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1.5rem;
+    --spacing-large: 3rem;
+
+    /* Outros */
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+}

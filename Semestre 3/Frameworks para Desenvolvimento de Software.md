@@ -80,7 +80,7 @@
 	
 ### Classificações Framework de Aplicação Orientada a Objetos
 - Frameworks de Infraestrutura:
-	- Desenvolviment o de sistemas portáteis (sistemas operacionais);
+	- Desenvolvimento de sistemas portáteis (sistemas operacionais);
 	- Frameworks de comunicação (otimizar entrega de mensagens);
 	- Interfaces gráficas.
 - Frameworks de Integração de Middleware:
@@ -114,8 +114,8 @@
 	- IDEs: Brackets, Komodo IDE, Visual Studio Code, WebStorm, Atom, Sublime NetBeans.
 	- Frameworks:  React, Angular, Vue.js, Express.js.
 - PHP:
-	IDEs: PhpStorm, Visual Studio Code, NetBeans, Eclipse e Zend Studio.
-	Frameworks: Laravel, Symfony, CodeIgniter, Zend/Laminas, Slim.
+	- IDEs: PhpStorm, Visual Studio Code, NetBeans, Eclipse e Zend Studio.
+	- Frameworks: Laravel, Symfony, CodeIgniter, Zend/Laminas, Slim.
 	
 ### Front-End 
 • React: biblioteca Java Script que pode ser usada para construir interfaces 
@@ -434,7 +434,7 @@ Spring MVC.
 ### APIs AOP - Aspectj, Pointcut, Advice, Proxy 
 • AOP permite separar responsabilidades como logs,
 	segurança e transações.
-• APIs AOP e de testes fortalecem a qualidade do software.
+• APIs AOP de testes fortalecem a qualidade do software.
 • Importante em arquiteturas modernas como microsserviços.
 
 - Fundamentos de AOP:

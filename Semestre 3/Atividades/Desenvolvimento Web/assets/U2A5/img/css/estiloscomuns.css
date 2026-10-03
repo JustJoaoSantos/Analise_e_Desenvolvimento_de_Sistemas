@@ -1,0 +1,40 @@
+/* ==============================================
+    Estilos Comuns e Componentes
+=============================================== */
+
+/* Cabeçalho */
+.main-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-medium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header h1 {
+    color: white;
+}
+
+.main-header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: var(--spacing-medium);
+    transition: color 0.3s ease;
+}
+
+.main-header nav a:hover {
+    color: var(--secondary-color);
+}
+
+/* Botões */
+.btn {
+    padding: var(--spacing-small) var(--spacing-medium);
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-weight: bold;
+    border-radius: 4px;
+    /* Transição para feedback visual */
+    transition: background-color 0.3s ease, transform 0.1s easy, box-shadow 0.3s ease;
+}

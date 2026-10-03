@@ -1,0 +1,63 @@
+/* ==============================================
+    Media Queries
+=============================================== */
+/* Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+    /* Catálogo 2 colunas */
+    .product-card {
+        flex: 1 1 calc(50% - var(--spacing-medium));
+    }
+
+    /* Detalhes: menos espaçamento */
+    .product-detail-container {
+        gap: var(--spacing-medium);
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    /* Layout Geral */
+    .main-header {
+        flex-direction: column;
+        align-items: center;
+        padding: var(--spacing-medium);
+    }
+
+    .main-header nav a {
+        margin: var(--spacing-small) 0.5rem;
+        display: inline-block;
+    }
+
+    .catalogo-main, .detalhes-main {
+        padding: var(--spacing-medium);
+    }
+
+    /* Catálogo 1 coluna */
+    .product-card {
+        flex: 1 1 100%; /* ocupa a largura total */
+        max-width: none;
+    }
+
+    /* Detalhes: layout em coluna */
+    .product-detail-container {
+        flex-direction: column;
+    }
+
+    .product-image-wrapper {
+        flex: 0 0 100%; /* ocupa 100% da largura em cima */
+    }
+
+    /* ajuste de fontes e espaçamentos */
+    .detail-title {
+        font-size: 1.5rem;
+    }
+
+    .detail-price {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: var(--spacing-small);
+    }
+}

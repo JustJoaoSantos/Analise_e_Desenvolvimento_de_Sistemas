@@ -1,0 +1,58 @@
+/* ==============================================
+    Página de Detalhes
+=============================================== */
+
+.detalhes-main {
+    padding: var(--spacing-large);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Contêiner flex para detalhes: imagem e info lado a lado */
+.product-detail-container {
+    display: flex;
+    gap: var(--spacing-large);
+    align-items: flex-start;
+    background-color: white;
+    padding: var(--spacing-medium);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+
+.product-image-wrapper {
+    /* define largura no desktop */
+    flex: 0 0 50%;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.detail-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease; /* transição de zoom sutil ao passar o mouse */
+}
+
+/* Animação para a imagem (zoom ao hover */
+.product-image-wrapper:hover .detail-image {
+    transform: scale(1.05);
+}
+
+.product-details {
+    flex: 1; /* ocupa o restante do espaço */
+}
+
+.detail-title {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-medium);
+    
+}
+
+.description-block {
+    margin-bottom: var(--spacing-large);
+}
+
+.action-buttons button {
+    margin-right: var(--spacing-small);
+}
