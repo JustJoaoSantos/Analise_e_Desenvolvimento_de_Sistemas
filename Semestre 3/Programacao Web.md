@@ -592,3 +592,110 @@ btn_calcular.addEventListener('click', function() {
 	document.getElementById('resultado_valor_imc').innerText = valor_IMC
 }
 ````
+
+## U3A3 - Formulários e Armazenamento Local
+***
+### Função assíncrona e API Call
+````javascript : cep.js
+const btn_consultar = document.getElementById('consultar')
+
+const  get_cep = async function(cep) {
+	let url = `https://viacep.com.br/ws/${cep}/json/`
+	
+	let response = await fetch(url)
+	
+	let item_cep = await response.json()
+	
+	console.log(item_cep)
+}
+
+btn_consultar.addEventListener('click', function(){
+	let cep = document.getElementById('input_cep')
+	get_cep(cep.value)
+})
+````
+
+```HTML : index.js 
+<head>
+<script src='cep.js' defer type='module'></script>
+</head>
+<body>
+	<form name='formCEP' id='form'>
+		<label>Cep:</label>
+		<input type='text' name='txt_cep' value='' maxlength='9' id='input_cep'>
+		<input type='button' name='btn_consultar' value='Consultar' id='consultar'>
+	</form>
+</body>
+```
+
+### Callback
+- Um callback é uma função que é passada como argumento para 
+	outra função, e que será executada depois que alguma operação 
+	assíncrona for concluída
+	
+````Javascript 
+function saudacao(nome, callback) {
+	console.log(`Olá, ${nome}!`);
+	callback(); // Chama a função de callback
+}
+````
+
+### Promises: uma abordagem mais estruturada
+
+- Uma Promise é um objeto que representa a eventual conclusão 
+	(ou falha) de uma operação assíncrona e seu valor resultante. 
+	Ela promete que algo vai acontecer (ou não) no futuro.
+
+- Uma Promise pode ter três estados:
+  + Pending (Pendente): estado inicial, nem cumprida, 
+		nem rejeitada.
+  + Fulfilled (Resolvida/Cumprida): a operação foi concluída 
+		com sucesso.
+  + Rejected (Rejeitada): a operação falhou.
+
+- Consumindo Promises:
+	+ .then(): usado para lidar com o sucesso (resolve). 
+		Pode ser encadeado.
+	+ .catch(): usado para lidar com erros (reject).
+	+ .finally(): executado independentemente do sucesso ou 
+		falha (limpeza, etc.).
+
+- Exemplo utilizando uma Promise:
+
+````Javascript
+function pedirPizza() {
+
+	return new Promise((resolve, reject) => {
+
+		// Simulamos um tempo de entrega (2 segundos)
+		setTimeout(() => {
+		
+			// 50% de chance de dar certo!
+			const deuCerto = Math.random() > 0.5; 
+		
+			// Se deu certo, chamamos resolve() com a mensagem de sucesso
+			if (deuCerto) {
+				resolve("Sua pizza chegou!");
+
+			// Se deu errado, chamamos reject() com a mensagem de erro
+			} else {
+				reject("Ops! O entregador teve um problema e a pizza atrasou. ");
+			}	
+
+		}, 2000); // 2 segundos
+
+	});
+}
+````
+- Explicando:
+	+ new Promise((resolve, reject) => { ... }): aqui estamos 
+		criando o "bilhete" da Promise.
+	+ resolve: é uma função que você chama quando a operação 
+		termina com sucesso. O que você passar para resolve será o 
+		valor de sucesso da Promise.
+	+ reject: é uma função que você chama quando a operação 
+		termina com erro. O que você passar para reject será o valor 
+		de erro da Promise.
+	+ setTimeout: estamos usando para simular que a "entrega" 
+		leva um tempo, como uma operação real na internet 
+		(buscar dados, por exemplo).
