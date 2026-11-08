@@ -42,7 +42,7 @@
 	
 ### Qualidade: Mais do que encontrar defeitos
 - Verificação
-	- Estamos construindo o produto correntamente?
+	- Estamos construindo o produto corretamente?
 	- Ex.: regra de cálculo, API, Integração, banco de dados 
 	
 - Validação
@@ -326,7 +326,7 @@
 
 ### Normas e Modelos de Qualidade 
 - ISO/IEC 12207: Processos do ciclo de vida de software 
-- IEEE 1012: Verificação e Validção
+- IEEE 1012: Verificação e Validação
 - IEEE 829: Documentação de testes.
 - ISO/IEC 25000: Qualidade do produto e em uso.
 - CMMI / MPS.BR: Maturidade de processos.

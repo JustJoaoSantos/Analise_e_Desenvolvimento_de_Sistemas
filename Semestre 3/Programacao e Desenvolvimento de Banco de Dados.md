@@ -227,7 +227,9 @@ CREATE TABLE [IF NOT EXISTS] nome_tabela (
 		lista de valores 'valor1', 'valor2', [...], NULO, ou vazio.
 	+ Armazenado como inteiro pelo banco
 	
-## U1A5 - Exemplo 
+## U1A5 - Exemplo
+***
+### CREATE
 ```SQL 
 CREATE DATABASE IF NOT EXISTS Biblioteca;
 USE Biblioteca;
@@ -256,3 +258,316 @@ CREATE TABLE IF NOT EXISTS Usuarios (
 	Data_Nascimento DATE
 );
 ```
+
+### INSERT
+```SQL
+INSERT INTO Usuarios (ID_Usuario, Nome, Data_Nascimento)
+VALUES (101, 'Joao Santos', '2002-10-26');
+```
+
+### SELECT
+```SQL
+SELECT * FROM Funcionarios;
+SELECT * FROM Funcionarios WHERE departamento = 'TI';
+SELECT UPPER(nome) AS 'Nome do Funcionário', UPPER(departamento) AS 'Área de Atuação' FROM Funcionarios;
+
+SELECT departamento, SUM(salario) as 'Soma dos Salarios' 
+FROM Funcionarios 
+GROUP BY departamento
+ORDER BY SUM(salario) DESC;
+```
+
+# Unidade 2
+***
+## U2A1 - Comandos DML para manipulação de bancos de dados
+***
+### ● Linguagem de manipulação de dados (DML)
+○ inserir, atualizar, excluir ou modificar dados
+○ Principais instruções
+○ Cláusulas condicionais
+
+### Instrução de Inserção (INSERT)
+● Permite adicionar novas linhas ou registro numa tabela
+	existente.
+	INSERT INTO nome_tabela (col1, col2) VALUES(15, 2);
+	INSERT INTO nome_tabela (col1, col2) VALUES(15, 2), (1,3);
+	
+● Inserir múltiplas linhas
+	INSERT INTO nome_tabela (a,b,c)
+	VALUES(1,2,3), (4,5,6), (7,8,9);
+	
+● Exemplo: considere a tabela a seguir
+```SQL 
+CREATE TABLE IF NOT EXISTS convidado (
+	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL DEFAULT ’’,
+	nascimento DATE,
+	estudante ENUM('Não', 'Sim') NOT NULL DEFAULT 'Não'
+);
+```
+
+```SQL 
+INSERT INTO CONVIDADO (nome, nascimento, estudante)
+VALUES ('Dani Moura', '1979-03-28', 'Sim');
+```
+
+- Resultado:
+	+ id: 1
+	+ nome: dani Moura
+	+ nascimento: '1979-03-28'
+	+ estudante: Sim
+	
+```SQL 
+INSERT INTO CONVIDADO (nome, nascimento, estudante)
+VALUES ('Rui Albuquerque', null , 'Sim');
+```
+
+- Resultado:
+	+ id: 2
+	+ nome: Rui Albuquerque 
+	+ nascimento: null 
+	+ estudante: Sim
+	
+### Instrução de Atualização (UPDATE)
+● UPDATE: atualiza colunas de linhas existentes na tabela
+	nomeada com novos valores.
+● SET: indica quais colunas modificar e os valores que devem ser
+	fornecidos.
+```SQL 
+UPDATE convidado
+SET estudante = 'Sim'
+WHERE nome = 'Lebrencio Grulher'
+AND nascimento = '08-Jul-1990';
+```
+
+● WHERE: condições que identificam quais linhas devem ser
+	atualizadas
+● ORDER BY e LIMIT:
+```SQL 
+UPDATE convidado SET estudante = 'Não';
+UPDATE convidado
+SET estudante = 'Sim'
+WHERE nascimento < '08-Jul-1990’
+LIMIT 10
+ORDER BY nome;
+```
+
+● UPDATE pode ser usado para várias tabelas ao mesmo tempo
+	○ Não pode utilizar ORDER BY e LIMIT, neste caso
+```SQL 
+UPDATE lista, produto SET lista.preco = produto.preco
+WHERE lista.id = produto.id;
+```
+
+Instrução de Exclusão (DELETE)
+● Instrução DML que exclui linhas de uma tabela.
+● Uso semelhante à UPDATE.
+● Sua sintaxe geral é dada por:
+```SQL 
+DELETE FROM
+nome_tabela
+[WHERE condição]
+[ORDER BY ...]
+[LIMIT quantidade_linhas]
+```
+● Exemplos: DELETE FROM convidados
+```SQL 
+WHERE estudante = 'Sim'
+ORDER BY nome
+LIMIT 10;
+DELETE FROM log_usuario
+WHERE usuario = ‘rm’
+ORDER BY datahora_acao LIMIT 1;
+```
+
+## U2A2 - Alteração de tabelas
+***
+### Alteração de tabelas (ALTER TABLE)
+● Comando que altera a estrutura de uma tabela
+	○ Adicionar ou excluir colunas
+	○ Criar ou destruir índices
+	○ Renomear colunas, ou a própria tabela
+	○ Alterar o mecanismo de armazenamento
+	> ALTER TABLE nome_tabela
+		[especificação_alteração
+		[,especificação_alteração] ...]
+
+
+● A sintaxe para as alterações é semelhante às cláusulas da
+	instrução CREATE TABLE.
+● Alguns comandos de especificação_alteração:
+	> ADD [COLUMN] (nome_coluna definição_coluna,...)
+		CHANGE [COLUMN] nome_antigo nome_novo
+		definição_coluna
+		DROP [COLUMN] nome_coluna
+		RENAME COLUMN antigo_nome_coluna TO
+		novo_nome_coluna
+
+● Múltiplas cláusulas ADD, ALTER, DROP e CHANGE são permitidas
+	em uma única instrução ALTER TABLE, separadas por vírgulas
+● Outros exemplos:
+	> ALTER TABLE cliente DROP COLUMN parentesco,
+	> DROP COLUMN telefones;
+	> ALTER TABLE cliente AUTO_INCREMENT = 13;
+	> ALTER TABLE pessoas CHARACTER SET = latin1;
+	
+### Adicionando e excluindo colunas(ADD e DROP)
+● ADD: adicionar novas colunas a uma tabela
+● DROP: remover colunas existentes
+● FIRST ou AFTER nome_coluna: adicionar uma coluna a uma
+	posição específica dentro de uma linha da tabela. O padrão é na
+	última linha.
+
+### Renomeando, redefinindo e reordenando colunas
+● As cláusulas CHANGE, MODIFY, RENAME COLUMN e ALTER
+	permitem que os nomes e definições de colunas existentes
+	sejam alterados. Exemplos:
+> ALTER TABLE pessoas CHANGE antigo novo BIGINT NOT NULL;
+> ALTER TABLE pessoas MODIFY nome INT NOT NULL;
+> ALTER TABLE pessoas RENAME COLUMN novo TO antigo;
+
+## U2A3 - Uso de Restrições (Constraints)
+***
+### Usando restrições (constraints)
+```SQL 
+CREATE TABLE pessoa (
+	id int NOT NULL PRIMARY KEY,
+	nome varchar(255) NOT NULL,
+	sobrenome varchar(255),
+	idade int 
+);
+
+ALTER TABLE pessoa 
+DROP PRIMARY KEY;
+
+ALTER TABLE pessoa
+ADD CONSTRAINT PK_pessoa PRIMARY KEY (id, sobrenome);
+```
+
+● Sintaxe para definição de restrição de chave estrangeira com
+	CREATE TABLE ou ALTER TABLE
+```SQL 
+ALTER TABLE nome_tabela
+ADD [CONSTRAINT [símbolo]] FOREIGN KEY
+[index_nome] (index_col_nome, ...)
+REFERENCES nome_tabela (index_col_nome,...)
+[ON DELETE referências]
+[ON UPDATE referências]
+```
++ referências: RESTRICT | CASCADE | SET NULL | NO ACTION
+
+● Regras para nomear um índice de chave estrangeira:
+	○ Se definido, o valor do símbolo CONSTRAINT é usado. Caso
+		contrário, o valor do index_nome FOREIGN KEY é usado.
+	○ Se nenhum símbolo CONSTRAINT ou FOREIGN KEY
+		index_nome estiverem definidos, o nome do índice de chave
+		estrangeira será gerado usando o nome da coluna de chave
+		estrangeira de referência
+		
+● Integridade referencial:
+```SQL 
+CREATE TABLE pai (
+	id INT NOT NULL,
+	nome VARCHAR(50),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE filha (
+	id INT PRIMARY KEY,
+	parente_id INT,
+	nome VARCHAR(50)
+);
+
+ALTER TABLE filha
+ADD CONSTRAINT FK_parente
+FOREIGN KEY (parente_id) REFERENCES pai(id);
+```
+
+### Qualificadores
+● São utilizados com as cláusulas ON UPDATE e ON DELETE
+	○ CASCADE: qualificador que exclui ou atualiza a linha da
+		tabela pai e exclui ou atualiza automaticamente as linhas
+		correspondentes na tabela filha.
+	○ SET NULL: exclui ou atualiza a linha da tabela pai e define
+		como NULL a coluna ou colunas de chave estrangeira na
+		tabela filha.
+	○ RESTRICT: rejeita a operação de exclusão ou atualização da
+		tabela pai.
+
+● Para excluir uma restrição, podemos executar a instrução
+	abaixo, em que a chave criada é mantida após esta execução,
+	assim somente a restrição será excluída.
+	> ALTER TABLE filha DROP FOREIGN KEY FK_parente;
+	
+	
+## U2A4 - Exclusão de tabelas em banco de dados
+***
+### Restrição FOREIGN KEY
+● A restrição FOREIGN KEY é usada para impedir ações que
+destruam links entre tabelas
+```SQL
+CREATE TABLE aluno (
+	id INT NOT NULL
+	AUTO_INCREMENT PRIMARY
+	KEY,
+	nome CHAR(50) NOT NULL
+);
+
+CREATE TABLE curso (
+	id INT NOT NULL
+	AUTO_INCREMENT PRIMARY
+	KEY,
+	nome CHAR(50) NOT NULL
+);
+
+CREATE TABLE nota (
+	aluno_id INT NOT NULL,
+	curso_id INT NOT NULL,
+	dataavaliacao DATE NOT NULL,
+	nota DOUBLE NOT NULL,
+	PRIMARY KEY(aluno_id, curso_id, dataavaliacao
+),
+INDEX i2 (curso_id),
+FOREIGN KEY (aluno_id) REFERENCES aluno(id) ON DELETE
+CASCADE,
+FOREIGN KEY (curso_id) REFERENCES curso(id) ON DELETE
+[ACTION]
+```
+
+### SHOW CREATE TABLE
+● mostra dados referentes a tabela criada 
+> SHOW CREATE TABLE nota;
+
+```SQL 
+CREATE TABLE `nota` (
+	`aluno_id` int NOT NULL,
+	`curso_id` int NOT NULL,
+	`dataavaliacao` date NOT NULL,
+	`nota` double NOT NULL,
+	PRIMARY KEY (`aluno_id`,`curso_id`,`dataavaliacao`),
+	KEY `i2` (`curso_id`),
+	CONSTRAINT `nota_ibfk_1` FOREIGN KEY (`aluno_id`) REFERENCES
+	`aluno` (`id`) ON DELETE CASCADE,
+	CONSTRAINT `nota_ibfk_2` FOREIGN KEY (`curso_id`) REFERENCES
+	`curso` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci
+```
+
+### Outras operações
+● DROP TABLE: remover uma ou mais tabelas
+ > DROP TABLE [IF EXISTS] nome_tabela [, nome_tabela] ...
+● Exclusão com restrição de chave estrangeira:
+	> ALTER TABLE nota DROP FOREIGN KEY nota_ibfk_1;
+		DROP TABLE IF EXISTS aluno;
+		
+● TRUNCATE TABLE: instrução para esvaziar uma tabela
+	completamente
+	+ Zera o contador AUTO_INCREMENT, mais rapido que o DELETE FROM 
+	> TRUNCATE [TABLE] nome_tabela;
+	
+● Instruir o MySQL a “respeitar” as restrições
+	> SET FOREIGN_KEY_CHECKS = 1;
+	
+● Instruir o MySQL a “ignorar” as restrições
+	> SET FOREIGN_KEY_CHECKS = 0;
