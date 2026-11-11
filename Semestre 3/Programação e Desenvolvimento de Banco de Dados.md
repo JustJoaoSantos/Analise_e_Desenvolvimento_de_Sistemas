@@ -181,7 +181,7 @@ CREATE TABLE [IF NOT EXISTS] nome_tabela (
 );
 ```
 ### Tipos de Dados: nomenclatura
-● M: tamanho do dado
+- M: tamanho do dado
 	+ Seu valor máximo está relacionado ao tipo de dado
 ● D: quantidade de dígitos “depois da vírgula”.
 	+ Valor máximo é 30 (ou M-2)
@@ -323,11 +323,11 @@ VALUES ('Rui Albuquerque', null , 'Sim');
 ```
 
 - Resultado:
-	+ id: 2
-	+ nome: Rui Albuquerque 
-	+ nascimento: null 
-	+ estudante: Sim
-	
+
+| id  | nome            | nascimento | estudante |
+| --- | --------------- | ---------- | --------- |
+| 2   | Rui Albuquerque | null       | sim       |
+
 ### Instrução de Atualização (UPDATE)
 ● UPDATE: atualiza colunas de linhas existentes na tabela
 	nomeada com novos valores.
@@ -406,10 +406,24 @@ ORDER BY datahora_acao LIMIT 1;
 ● Múltiplas cláusulas ADD, ALTER, DROP e CHANGE são permitidas
 	em uma única instrução ALTER TABLE, separadas por vírgulas
 ● Outros exemplos:
-	> ALTER TABLE cliente DROP COLUMN parentesco,
-	> DROP COLUMN telefones;
-	> ALTER TABLE cliente AUTO_INCREMENT = 13;
-	> ALTER TABLE pessoas CHARACTER SET = latin1;
+```SQL 
+ALTER TABLE cliente 
+DROP COLUMN parentesco, DROP COLUMN telefones;
+```
+
+```SQL 
+ALTER TABLE cliente AUTO_INCREMENT = 13;
+```
+
+```SQL
+ALTER TABLE pessoas CHARACTER SET = latin1;
+```	
+
+- Alteração de coluna:
+```SQL 
+ALTER TABLE Customers
+ADD Email varchar(255);
+```
 	
 ### Adicionando e excluindo colunas(ADD e DROP)
 ● ADD: adicionar novas colunas a uma tabela
@@ -425,6 +439,10 @@ ORDER BY datahora_acao LIMIT 1;
 > ALTER TABLE pessoas CHANGE antigo novo BIGINT NOT NULL;
 > ALTER TABLE pessoas MODIFY nome INT NOT NULL;
 > ALTER TABLE pessoas RENAME COLUMN novo TO antigo;
+```SQL 
+ALTER TABLE table_name
+RENAME COLUMN old_name TO new_name;
+```
 
 ## U2A3 - Uso de Restrições (Constraints)
 ***
@@ -555,19 +573,139 @@ COLLATE=utf8mb4_0900_ai_ci
 ```
 
 ### Outras operações
-● DROP TABLE: remover uma ou mais tabelas
+- DROP TABLE: remover uma ou mais tabelas
  > DROP TABLE [IF EXISTS] nome_tabela [, nome_tabela] ...
-● Exclusão com restrição de chave estrangeira:
+- Exclusão com restrição de chave estrangeira:
 	> ALTER TABLE nota DROP FOREIGN KEY nota_ibfk_1;
 		DROP TABLE IF EXISTS aluno;
 		
-● TRUNCATE TABLE: instrução para esvaziar uma tabela
-	completamente
+- TRUNCATE TABLE: instrução para esvaziar uma tabela completamente
 	+ Zera o contador AUTO_INCREMENT, mais rapido que o DELETE FROM 
 	> TRUNCATE [TABLE] nome_tabela;
 	
-● Instruir o MySQL a “respeitar” as restrições
+- Instruir o MySQL a “respeitar” as restrições
 	> SET FOREIGN_KEY_CHECKS = 1;
 	
-● Instruir o MySQL a “ignorar” as restrições
+- Instruir o MySQL a “ignorar” as restrições
 	> SET FOREIGN_KEY_CHECKS = 0;
+	
+# Unidade 3
+***
+## U3A1 - Junções em bancos de dados 
+```SQL Bando de Exemplo
+CREATE TABLE categoria (
+	id INT(3) PRIMARY KEY AUTO_INCREMENT,
+	Nome VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE produto (
+	Codigo INT(3) PRIMARY KEY AUTO_INCREMENT,
+	Nome VARCHAR(50) NOT NULL,
+	Valor DECIMAL(6, 2),
+	Id_Categoria INT(3) NOT NULL FOREIGN KEY (Id_Categoria) REFERENCES categoria(id)
+);
+
+INSERT Categoria VALUES (0, 'DVD'), (0, 'Livro'), (0, 'Informatica');
+
+INSERT Produto VALUES (0, 'Código da Vinci', 39,99, 2), (0, 'vancock', 89.99, 1);
+```
+### Parâmetro JOIN
+- Unir duas ou mais tabelas, ao se apontar os campos correspondentes entre elas.
+	> SELECT[campo] FROM [tabela_1>JOIN<tabela_2] ON
+		[tabela_1].[chave_primária] =
+		[tabela_2].[chave_estrangeira]
+		WHERE [condição];
+		
+- Tipos de JOIN: INNER, LEFT e RIGHT JOIN.
+
+### Junção interna (JOIN / INNER JOIN)
+- Consulta que retorne o nome da categoria e seus respectivos
+	nomes dos produtos
+```SQL
+SELECT categoria.nome, produto.nome FROM
+Categoria INNER JOIN Produto
+ON Categoria.Id = Produto.Id_Categoria;
+```
+
+- Saida:
+
+| nome  | nome            |
+| ----- | --------------- |
+| Livro | Código da Vinci |
+| DVD   | Hancock         |
+
+
+
+### INNER JOIN
+● Utilizar condições nas consultas, quando for necessário fazer as
+	junções entre as tabelas
+```SQL
+SELECT categoria.nome as "Tipo",
+produto.nome as "Produto",
+produto.valor
+FROM Categoria INNER JOIN Produto
+ON Categoria.Id = Produto.Id_Categoria
+WHERE produto.valor < 50.00;
+```
+| Tipo  | Produto        | Valor |
+| Livro | Código da vinci| 39.99 |
+
+Junção Externa
+● Considere as tabelas de exemplo:
+	> SELECT * FROM categoria SELECT * FROM produto
+|	id | Nome        |   | Codigo | Nome           | Valor | Id_Categoria|
+| 1  | DVD         |   |   1    | Código da vinci| 39.99 | 2           |
+| 2  | Livro       |   |   2    | Hancock        | 89.99 | 1           |
+| 3  | Informatica |   
+
+● Quando o operador de junção externa for utilizado no SQL, é
+	gerado o resultado da junção mais as linhas não combinadas.
+● É possível efetuar junções externas em ambos os lados
+
+### LEFT JOIN
+● Exemplo:
+```SQL 
+SELECT categoria.nome as "Tipo", produto.nome as
+"Produto",
+produto.valor FROM Categoria LEFT JOIN Produto
+ON Categoria.Id = Produto.Id_Categoria;
+```
+| Tipo				| Produto 				|	Valor	|
+|	DVD					| Hancock     		|	89.99	|
+|	Livro				| Código da vinci	|	39.99	|
+|	Informatica	| Null 						|	Null	|
+
+### RIGHT JOIN
+● Exemplo:
+```SQL
+SELECT categoria.nome as "Tipo",
+produto.nome as "Produto", produto.valor
+FROM Categoria RIGHT JOIN Produto
+ON Categoria.Id = Produto.Id_Categoria;
+```
+|	Tipo	|	Produto					|	Valor	|
+|	Livro	|	Código da vinci	|	39.99	|
+|	DVD		|	Hancock					|	89.99	|
+
+## U3A2 - Funções de Agregação
+***
+### GROUP BY
+● Funções de agregação em SQL: desenvolver consultas utilizando
+	valores das colunas como parâmetro de pesquisa (SELECT).
+● Os resultados das seleções podem ser organizados em grupos,
+	baseados no conteúdo existente em uma ou mais colunas.
+> SELECT [coluna] FROM [tabela]
+	WHERE [condição]
+	GROUP BY [coluna];
+	
+### Funções de agregação
+● Funções agregadas operam sobre conjuntos de valores,
+	retornando um único resultado.
+● SQL oferece cinco funções de agregação nativas: AVG, MIN,
+	MAX, SUM e COUNT.
+● Estrutura básica para utilizar funções de agregação:
+	> SELECT função_de_agregação(coluna) AS
+		nome_da_coluna_agregada
+		FROM tabela
+		[WHERE condição]
+		[GROUP BY coluna]

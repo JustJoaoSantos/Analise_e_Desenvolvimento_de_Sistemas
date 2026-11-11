@@ -1,0 +1,9 @@
+.cm-embed-block.cm-table-widget.markdown-rendered {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+}
+
+/* For standard tables or Dataview tables */
+.markdown-rendered table {
+    margin-top: 2px; /* adjust this value as needed */
+}

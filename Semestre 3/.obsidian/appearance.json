@@ -1,0 +1,10 @@
+{
+  "theme": "obsidian",
+  "showViewHeader": false,
+  "showRibbon": true,
+  "nativeMenus": false,
+  "enabledCssSnippets": [
+    "custom_bullet_list",
+    "compact_table"
+  ]
+}
