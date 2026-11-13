@@ -3,7 +3,7 @@
 ## U1A1 - Introdução
 ***
 ### A Linguagem SQL
-● Linguagem padrão dos SGBD.
+- Linguagem padrão dos SGBD.
 ● SQL, do inglês Structured Query Language
 ● É a forma de tratarmos os vários aspectos de um banco de
 dados:
@@ -634,15 +634,10 @@ ON Categoria.Id = Produto.Id_Categoria;
 | Livro | Código da Vinci |
 | DVD   | Hancock         |
 
-
-
 ### INNER JOIN
-● Utilizar condições nas consultas, quando for necessário fazer as
-	junções entre as tabelas
+- Utilizar condições nas consultas, quando for necessário fazer as junções entre as tabelas
 ```SQL
-SELECT categoria.nome as "Tipo",
-produto.nome as "Produto",
-produto.valor
+SELECT categoria.nome as "Tipo", produto.nome as "Produto", produto.valor
 FROM Categoria INNER JOIN Produto
 ON Categoria.Id = Produto.Id_Categoria
 WHERE produto.valor < 50.00;
@@ -665,9 +660,8 @@ Junção Externa
 ### LEFT JOIN
 ● Exemplo:
 ```SQL 
-SELECT categoria.nome as "Tipo", produto.nome as
-"Produto",
-produto.valor FROM Categoria LEFT JOIN Produto
+SELECT categoria.nome as "Tipo", produto.nome as "Produto", produto.valor 
+FROM Categoria LEFT JOIN Produto
 ON Categoria.Id = Produto.Id_Categoria;
 ```
 | Tipo				| Produto 				|	Valor	|
@@ -678,8 +672,7 @@ ON Categoria.Id = Produto.Id_Categoria;
 ### RIGHT JOIN
 ● Exemplo:
 ```SQL
-SELECT categoria.nome as "Tipo",
-produto.nome as "Produto", produto.valor
+SELECT categoria.nome as "Tipo", produto.nome as "Produto", produto.valor
 FROM Categoria RIGHT JOIN Produto
 ON Categoria.Id = Produto.Id_Categoria;
 ```
@@ -709,3 +702,183 @@ ON Categoria.Id = Produto.Id_Categoria;
 		FROM tabela
 		[WHERE condição]
 		[GROUP BY coluna]
+
+## U3A3 - Sub-consultas aninhadas
+***
+### Subconsultas com IN e NOT IN
+- É considerada uma subconsulta uma expressão em SQL, composta por SELECT-FROM-WHERE, aninhada dentro de outra consulta, permitindo fazer comparações entre os conjuntos de dados.
+- Conectivos IN e NOT IN
+> SELECT [campo]
+		FROM [tabela]
+		WHERE [campo] IN / NOT IN ( SELECT [campo] FROM [tabela] );
+
+- Tabela Aluno
+
+| RA  | nome  | telefone  |
+| --- | ----- | --------- |
+| 11  | Maria | 119999999 |
+| 22  | Joao  | 119988888 |
+| 33  | Jose  | 119777777 |
+| 44  | Jonas | 119666666 |
+- Tabela Emprestimo
+
+| numero | retirada   | devolucao  | aluno_RA | funcionario_mat | libro_isbn |
+| ------ | ---------- | ---------- | -------- | --------------- | ---------- |
+| 1      | 2018-01-15 | 2018-02-01 | 11       | 1               | 11111      |
+| 2      | 2018-04-05 | 2018-04-20 | 22       | 1               | 22222      |
+- Tabela Restricao
+
+| id  | aluno_RA | libro_isbn |
+| --- | -------- | ---------- |
+| 1   | 33       | 44444      |
+```SQL
+SELECT aluno.nome FROM aluno
+WHERE aluno.RA NOT IN
+(SELECT aluno_RA FROM restricao);
+```
+- Resultado:
+
+| nome  |
+| ----- |
+| Maria |
+| Joao  |
+| Jonas |
+```SQL
+SELECT aluno.nome AS 'ALUNO' FROM
+aluno WHERE aluno.RA NOT IN
+(SELECT aluno_RA FROM emprestimo);
+```
+- Resultado:
+
+| ALUNO |
+| ----- |
+| Jose  |
+| Jonas |
+### Comparação de Conjuntos
+- O SQL permite desenvolver subconsultas aninhadas utilizando condições (WHERE)
+
+| Operador Matemático | SELECT com WHERE (SQL)  | Subconsulta (SQL)               |
+| :-----------------: | ----------------------- | ------------------------------- |
+|          =          | WHERE campo = condição  | WHERE campo = SOME (SELECT...)  |
+|         !=          | WHERE campo <> condição | WHERE campo <> SOME (SELECT...) |
+|          >          | WHERE campo > condição  | WHERE campo > SOME (SELECT...)  |
+|         >=          | WHERE campo >= condição | WHERE campo >= SOME (SELECT...) |
+|          <          | WHERE campo < condição  | WHERE campo < SOME (SELECT...)  |
+|         <=          | WHERE campo <= condição | WHERE campo <= SOME (SELECT...) |
+- Exemplo: Listar os nomes do empregados que têm salário superior a algum empregado do departamento B
+```SQL
+SELECT nome, salario, dpto FROM colaborador;
+```
+
+| nome  | salario | dpto |
+| ----- | ------- | ---- |
+| joao  | 3000.00 | B    |
+| maria | 6000.00 | A    |
+| zé    | 2000.00 | A    |
+| bil   | 3000.00 | B    |
+| ana   | 5000.00 | C    |
+```SQL
+SELECT salario FROM colaborador WHERE dpto = "B";
+```
+
+| salario |
+| ------- |
+| 3000.00 |
+| 3000.00 |
+```SQL
+SELECT nome, salario, dpto FROM colaborador
+WHERE salario > SOME (SELECT salario FROM colaborador WHERE dpto = 'B');
+```
+
+| nome  | salario | dpto |
+| ----- | ------- | ---- |
+| maria | 6000.00 | A    |
+| ana   | 5000.00 | C    |
+## U3A4 - Visões (View), índices (Index) e Fulltext
+***
+### Introdução
+- Necessidade de técnicas que proporcionem um maior aproveitamento dos recursos disponíveis
+- Considere o exemplo:
+![[PBD_U3A4_exemplo_tabela.png]]
+
+### Visões (VIEW)
+- O recurso SQL para gerar visões é uma alternativa para visualizar os dados de uma ou mais tabelas de um BD (tabela virtual)
+- A técnica de VIEW encapsula uma seleção de dados (SELECT)
+- Torna as consultas mais rápidas
+- Quando há alterações, o SGBD atualiza a VIEW automaticamente.
+- Sintaxe e operações com uma VIEW:
+> CREATE VIEW [nome_da_VIEW] AS
+> SELECT [coluna]
+> FROM [tabela]
+> WHERE [condições];
+
+> SELECT * FROM [nome_da_VIEW];
+
+> DROP VIEW [nome_da_VIEW];
+
+- Exemplo:
+```SQL
+CREATE VIEW v_select1 AS
+SELECT veiculo.nome as “Veiculo”, fabricante.marca as “Marca”, veiculo.cor as “Cor”,
+veiculo.preco as “Valor”
+FROM veiculo INNER JOIN fabricante
+WHERE veiculo.fabricante_Codigo = fabricante.Codigo AND veiculo.preco <= 50000;
+```
+
+- Vantagens:
+	+ Economia de tempo: diminuição na carga de criação de comandos SELECT
+	+ Velocidade de acesso: devido às VIEWs estarem pré armazenadas
+	+ Ocultação da complexidade: o usuário não necessita saber dos campos, nem das seleções.
+
+### Índice (INDEX)
+- Problema do Table Scan: tempo de verificação tende a ser muito grande.
+- A utilização dos índices é opcional para a seleção de dados → estruturas redundantes.
+- Não era admitido até a versão SQL:1999
+
+- Declarar um índice, no desenvolvimento da tabela:
+	> CREATE TABLE [nomeDaTabela] (
+	> 	Campo1 tipo(tamanho),
+	> 	Campo2 tipo(tamanho),
+	> 	INDEX(Campo1)
+>	);
+
+- Declarar um índice em tabela existente no BD:
+> CREATE INDEX [nomeDoIndice] ON [nomeDaTabela](Campo);
+
+- Exemplo:
+```SQL
+CREATE INDEX idx_Renavam
+ON veiculo(RENAVAN);
+
+SHOW INDEX FROM veiculo;
+```
+- Resultado:
+
+| Table   | Non_unique | Key_name          | Seq_in_index | Column_name       |
+| ------- | ---------- | ----------------- | ------------ | ----------------- |
+| veiculo | 0          | PRIMARY           | 1            | RENAVAN           |
+| veiculo | 1          | Fabricante_Codigo | 1            | Fabricante_Codigo |
+| veiculo | 1          | idx_Renavam       | 1            | RENAVAN           |
+
+
+- Sintaxe para utilizar um índice:
+> SELECT [coluna] FROM [nomeDaTabela]
+> USE INDEX (nomeDoIndice)
+> WHERE [condições];
+
+- Exemplo:
+```SQL 
+SELECT nome AS “Veiculo”, cor AS “Cor”, Preço AS “Valor” 
+FROM veiculo
+USE INDEX(idx_Renavam)
+WHERE preco<= 50000;
+```
+### FULLTEXT em banco de dados relacional
+- Buscar um trecho dentro de várias strings / ativa fulltext na tabela
+> ALTER TABLE [nome_tabela] ADD FULLTEXT (nome_da_coluna);
+
+- Buscar palavras dentro de longos textos:
+> SELECT [coluna] FROM nome_da_tabela 
+> WHERE MATCH(coluna)
+> AGAINST(‘palavra_desejada’);
+
