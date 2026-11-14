@@ -269,7 +269,8 @@ VALUES (101, 'Joao Santos', '2002-10-26');
 ```SQL
 SELECT * FROM Funcionarios;
 SELECT * FROM Funcionarios WHERE departamento = 'TI';
-SELECT UPPER(nome) AS 'Nome do Funcionário', UPPER(departamento) AS 'Área de Atuação' FROM Funcionarios;
+SELECT UPPER(nome) AS 'Nome do Funcionário', UPPER(departamento) AS 'Área de Atuação' 
+FROM Funcionarios;
 
 SELECT departamento, SUM(salario) as 'Soma dos Salarios' 
 FROM Funcionarios 
@@ -433,15 +434,21 @@ ADD Email varchar(255);
 	última linha.
 
 ### Renomeando, redefinindo e reordenando colunas
-● As cláusulas CHANGE, MODIFY, RENAME COLUMN e ALTER
-	permitem que os nomes e definições de colunas existentes
-	sejam alterados. Exemplos:
-> ALTER TABLE pessoas CHANGE antigo novo BIGINT NOT NULL;
-> ALTER TABLE pessoas MODIFY nome INT NOT NULL;
-> ALTER TABLE pessoas RENAME COLUMN novo TO antigo;
+- As cláusulas CHANGE, MODIFY, RENAME COLUMN e ALTER permitem que os nomes e definições de colunas existentes sejam alterados
+> ALTER TABLE nome_tabela CHANGE antigo_nome novo_nome novo_tipo;
+> ALTER TABLE nome_tabela MODIFY nome_coluna tipo_novo constraint;
+> ALTER TABLE nome_tabela RENAME COLUMN nome_antigo TO nome_novo;
+
+- Exemplos: 
 ```SQL 
-ALTER TABLE table_name
-RENAME COLUMN old_name TO new_name;
+ALTER TABLE Carro
+RENAME COLUMN Nome TO Modelo;
+
+ALTER TABLE Carro
+CHANGE Nome Modelo VARCHAR(50) NOT NULL;
+
+ALTER TABLE Carro
+MODIFY Placa CHAR(7) NOT NULL;
 ```
 
 ## U2A3 - Uso de Restrições (Constraints)
@@ -462,17 +469,25 @@ ALTER TABLE pessoa
 ADD CONSTRAINT PK_pessoa PRIMARY KEY (id, sobrenome);
 ```
 
-● Sintaxe para definição de restrição de chave estrangeira com
-	CREATE TABLE ou ALTER TABLE
-```SQL 
-ALTER TABLE nome_tabela
-ADD [CONSTRAINT [símbolo]] FOREIGN KEY
-[index_nome] (index_col_nome, ...)
-REFERENCES nome_tabela (index_col_nome,...)
-[ON DELETE referências]
-[ON UPDATE referências]
-```
+- Sintaxe para definição de restrição de chave estrangeira com ALTER TABLE
+> ALTER TABLE nome_tabela
+> ADD [CONSTRAINT [símbolo]] FOREIGN KEY
+> [index_nome] (index_col_nome, ...)
+> REFERENCES nome_tabela (index_col_nome,...)
+> [ON DELETE referências]
+> [ON UPDATE referências]
 + referências: RESTRICT | CASCADE | SET NULL | NO ACTION
+- Exemplo com CREATE TABLE:
+```SQL
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    OrderNumber INT NOT NULL,
+    PersonID INT,
+    CONSTRAINT FK_Person
+    FOREIGN KEY (PersonID)
+    REFERENCES Persons(PersonID)
+); 
+```
 
 ● Regras para nomear um índice de chave estrangeira:
 	○ Se definido, o valor do símbolo CONSTRAINT é usado. Caso

@@ -55,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "ALTER TABLE",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,7 +79,8 @@
               "title": "Marcadores"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -190,6 +191,15 @@
   },
   "active": "a68a8b8f6485ce26",
   "lastOpenFiles": [
+    "Atividades/Programacao e Desenvolvimento de Bancos de Dados/Ativade Pratica U3.docx~RF11eacea.TMP",
+    "Atividades/Programacao e Desenvolvimento de Bancos de Dados/lu17940am3qq.tmp",
+    "Atividades/Programacao e Desenvolvimento de Bancos de Dados/Ativade Pratica U3.docx~RF11c143e.TMP",
+    "Atividades/Programacao e Desenvolvimento de Bancos de Dados/lu17940am3qo.tmp",
+    "Atividades/Programacao e Desenvolvimento de Bancos de Dados/lu17940am3qm.tmp",
+    "Atividades/Programacao e Desenvolvimento de Bancos de Dados/Ativade Pratica U3.docx",
+    "Atividades/Programacao e Desenvolvimento de Bancos de Dados/Ativade Pratica U2 - Copia.docx",
+    "Computacao em Nuvem.md",
+    "Programação e Desenvolvimento de Banco de Dados.md",
     "Anexos/PBD_U3A4_tabela_veiculo.png",
     "Anexos/Captura de tela 2026-11-13 185705.png",
     "Anexos/PBD_U3A4_exemplo_tabela.png"
